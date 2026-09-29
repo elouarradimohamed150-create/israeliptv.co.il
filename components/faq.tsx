@@ -7,11 +7,25 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { faqs } from "@/lib/faq"
+import { faqs, faqsEn } from "@/lib/faq"
+import type { Locale } from "@/lib/i18n"
 
-export default function FAQ() {
+const copy = {
+  he: {
+    h2: <>שאלות נפוצות על <span className="text-primary">Israel IPTV</span></>,
+    p: "לא מצאתם תשובה? כתבו לנו בוואטסאפ – עונים בעברית, מסביב לשעון.",
+  },
+  en: {
+    h2: <><span className="text-primary">Israel IPTV</span> FAQ</>,
+    p: "Didn't find your answer? Message us on WhatsApp – we reply in Hebrew and English, around the clock.",
+  },
+}
+
+export default function FAQ({ locale = "he" }: { locale?: Locale }) {
+  const t = copy[locale]
+  const items = locale === "en" ? faqsEn : faqs
   return (
-    <section className="relative px-4 py-20">
+    <section id="faq" className="relative scroll-mt-20 px-4 py-20">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,10 +34,10 @@ export default function FAQ() {
           className="text-center"
         >
           <h2 className="text-balance text-3xl font-bold text-foreground sm:text-4xl">
-            שאלות נפוצות על <span className="text-primary">Israel IPTV</span>
+            {t.h2}
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground">
-            לא מצאתם תשובה? כתבו לנו בוואטסאפ – עונים בעברית, מסביב לשעון.
+            {t.p}
           </p>
         </motion.div>
 
@@ -35,16 +49,16 @@ export default function FAQ() {
           className="mt-10"
         >
           <Accordion type="single" collapsible className="flex flex-col gap-3">
-            {faqs.map((faq, index) => (
+            {items.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
                 className="glass overflow-hidden rounded-xl border-none px-6"
               >
-                <AccordionTrigger className="py-5 text-right text-sm font-medium text-foreground hover:no-underline sm:text-base">
+                <AccordionTrigger className="py-5 text-start text-sm font-medium text-foreground hover:no-underline sm:text-base">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground text-right">
+                <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground text-start">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

@@ -1,5 +1,5 @@
 import { site, plans } from '@/lib/site'
-import { faqs } from '@/lib/faq'
+import { faqsEn } from '@/lib/faq'
 import { getAllPosts } from '@/lib/posts'
 
 // llms.txt: a plain-text summary of Israel IPTV for AI assistants and answer engines (https://llmstxt.org)
@@ -34,11 +34,12 @@ ${plans.map(price).join('\n')}
 
 ## Frequently asked questions
 
-${faqs.map((f) => `### ${f.question}\n${f.answer}`).join('\n\n')}
+${faqsEn.map((f) => `### ${f.question}\n${f.answer}`).join('\n\n')}
 
 ## Pages
 
-- [Israel IPTV – home](${site.url}/): overview, prices, installation, FAQ
+- [Israel IPTV – home (Hebrew)](${site.url}/): overview, prices, installation, FAQ
+- [Israel IPTV – home (English)](${site.url}/en): the same overview in English
 - [About Israel IPTV](${site.url}/about): who we are and how the service works
 - [Channel list](${site.url}/channels-list): searchable list of all live channels
 - [Blog](${site.url}/blog): installation guides and IPTV articles in Hebrew

@@ -5,8 +5,39 @@ import { ShoppingCart, Timer, ShieldCheck } from "lucide-react"
 import Link from "next/link"
 import { waBuy, waTrial } from "@/lib/whatsapp"
 import { site } from "@/lib/site"
+import type { Locale } from "@/lib/i18n"
 
-export default function Hero() {
+const copy = {
+  he: {
+    badge: `החזר כספי מלא תוך ${site.refundDays} ימים · בלי התחייבות`,
+    h1: "כל הטלוויזיה הישראלית, בלי כבלים ובלי צלחת",
+    intro: (
+      <>
+        <strong className="text-foreground">Israel IPTV</strong> הוא שירות טלוויזיה באינטרנט שמביא לכם את כאן 11, קשת
+        12, רשת 13, ערוצי הספורט והסרטים – יחד עם {site.channels}+ ערוצים מכל העולם ו-{site.vod}+ סרטים וסדרות. עובד על
+        הטלוויזיה, הטלפון והמחשב, מ-₪55 לחודש.
+      </>
+    ),
+    order: "הזמינו עכשיו",
+    trial: "נסו יום אחד ב-₪13",
+  },
+  en: {
+    badge: `${site.refundDays}-day money-back guarantee · No contract`,
+    h1: "Israeli TV anywhere – no cable, no satellite dish",
+    intro: (
+      <>
+        <strong className="text-foreground">Israel IPTV</strong> is an internet TV service that brings you Kan 11,
+        Keshet 12, Reshet 13, Israeli sports and movie channels – together with {site.channels}+ channels from around
+        the world and {site.vod}+ movies and series. Watch on your TV, phone or computer, from ₪55 per month.
+      </>
+    ),
+    order: "Order now",
+    trial: "Try 1 day for ₪13",
+  },
+}
+
+export default function Hero({ locale = "he" }: { locale?: Locale }) {
+  const t = copy[locale]
   return (
     <section
       id="home"
@@ -25,9 +56,7 @@ export default function Hero() {
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5"
         >
           <ShieldCheck className="h-4 w-4 text-primary" />
-          <span className="text-sm font-medium text-primary">
-            החזר כספי מלא תוך {site.refundDays} ימים · בלי התחייבות
-          </span>
+          <span className="text-sm font-medium text-primary">{t.badge}</span>
         </motion.div>
 
         <motion.h1
@@ -38,7 +67,7 @@ export default function Hero() {
         >
           <span dir="ltr" className="text-primary">Israel IPTV</span>
           <br />
-          כל הטלוויזיה הישראלית, בלי כבלים ובלי צלחת
+          {t.h1}
         </motion.h1>
 
         <motion.p
@@ -47,9 +76,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground sm:text-xl"
         >
-          <strong className="text-foreground">Israel IPTV</strong> הוא שירות טלוויזיה באינטרנט שמביא לכם את כאן 11, קשת 12, רשת 13, ערוצי הספורט והסרטים – יחד עם{" "}
-          {site.channels}+ ערוצים מכל העולם ו-{site.vod}+ סרטים וסדרות. עובד על הטלוויזיה, הטלפון
-          והמחשב, מ-₪55 לחודש.
+          {t.intro}
         </motion.p>
 
         <motion.div
@@ -65,7 +92,7 @@ export default function Hero() {
             className="neon-glow flex items-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:brightness-110"
           >
             <ShoppingCart className="h-5 w-5" />
-            הזמינו עכשיו
+            {t.order}
           </Link>
 
           <Link
@@ -75,7 +102,7 @@ export default function Hero() {
             className="flex items-center gap-2 rounded-xl border border-border px-8 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/50 hover:bg-primary/5"
           >
             <Timer className="h-5 w-5" />
-            נסו יום אחד ב-₪13
+            {t.trial}
           </Link>
         </motion.div>
 

@@ -11,10 +11,10 @@ import FAQ from '@/components/faq'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
 import { site } from '@/lib/site'
-import { graph, organization, website, service, faqPage, WEBSITE_ID, SERVICE_ID } from '@/lib/schema'
+import { graph, organization, website, service, faqPage, homeLanguages, WEBSITE_ID, SERVICE_ID } from '@/lib/schema'
 
 export const metadata = {
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', languages: homeLanguages },
   openGraph: { url: '/' },
 }
 

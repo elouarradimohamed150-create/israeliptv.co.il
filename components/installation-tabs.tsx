@@ -3,8 +3,9 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { MonitorPlay, Flame, Smartphone, Apple, Download, Settings, Play } from "lucide-react"
+import type { Locale } from "@/lib/i18n"
 
-const tabs = [
+const tabsHe = [
   {
     id: "smart-tv",
     label: "Samsung / LG",
@@ -95,9 +96,67 @@ const tabs = [
   },
 ]
 
-export default function InstallationTabs() {
+const tabsEn = [
+  {
+    id: "smart-tv",
+    label: "Samsung / LG",
+    icon: MonitorPlay,
+    steps: [
+      { icon: Download, title: "Install a player from the store", description: "Open your TV's app store, search for IBO Player, Smart IPTV or IPTV Smarters and install it. It takes less than a minute." },
+      { icon: Settings, title: "Enter the details from WhatsApp", description: "Open the player and enter the username, password and server URL we sent you. If the player shows a MAC code, send it to us and we will connect you remotely." },
+      { icon: Play, title: "Start watching", description: "Channels load automatically by category, with a full TV guide. Add favourites and switch between them with your remote." },
+    ],
+  },
+  {
+    id: "firestick",
+    label: "Fire Stick",
+    icon: Flame,
+    steps: [
+      { icon: Download, title: "Allow installs from Downloader", description: "Go to Settings → My Fire TV → Developer Options → Install unknown apps, and allow the Downloader app from the Amazon store." },
+      { icon: Settings, title: "Download the player", description: "In Downloader, type the code we sent you on WhatsApp, install the player and enter your subscription details." },
+      { icon: Play, title: "Start watching", description: "Add the player to your home screen to open it in one click, then enjoy every channel and the full VOD library." },
+    ],
+  },
+  {
+    id: "android",
+    label: "Android / MAG",
+    icon: Smartphone,
+    steps: [
+      { icon: Download, title: "Install from Google Play", description: "On Android TV, a phone or a tablet, install IPTV Smarters Pro or TiviMate. MAG boxes don't need an app." },
+      { icon: Settings, title: "Connect your subscription", description: "In the app choose Xtream Codes and enter your details. On a MAG box, send us its MAC address and enter the portal URL we send you." },
+      { icon: Play, title: "Start watching", description: "The channel list loads in seconds. In TiviMate you can also record and rewind live TV (on plans with Catch-Up)." },
+    ],
+  },
+  {
+    id: "apple",
+    label: "iPhone / Apple TV",
+    icon: Apple,
+    steps: [
+      { icon: Download, title: "Download from the App Store", description: "Install IPTV Smarters Player Lite or GSE Smart IPTV on your iPhone, iPad or Apple TV." },
+      { icon: Settings, title: "Add your account", description: "Choose Login with Xtream Codes API and enter the username, password and server URL from WhatsApp." },
+      { icon: Play, title: "Watch anywhere", description: "Watch outside the home on any internet connection – including AirPlay to your TV." },
+    ],
+  },
+]
+
+const copy = {
+  he: {
+    tabs: tabsHe,
+    h2: <>מתקינים ב-<span className="text-primary">3 צעדים</span> ומתחילים לצפות</>,
+    p: "בחרו את המכשיר שלכם. נתקעתם? שלחו לנו הודעה בוואטסאפ ונעשה את זה איתכם – בחינם.",
+  },
+  en: {
+    tabs: tabsEn,
+    h2: <>Set up <span className="text-primary">Israel IPTV</span> in 3 steps</>,
+    p: "Pick your device. Stuck? Send us a WhatsApp message and we'll set it up with you – free of charge.",
+  },
+}
+
+export default function InstallationTabs({ locale = "he" }: { locale?: Locale }) {
+  const t = copy[locale]
+  const tabs = t.tabs
   const [activeTab, setActiveTab] = useState("smart-tv")
-  const activeData = tabs.find((t) => t.id === activeTab)!
+  const activeData = tabs.find((tab) => tab.id === activeTab)!
 
   return (
     <section id="installation" className="relative scroll-mt-20 px-4 py-20">
@@ -109,10 +168,10 @@ export default function InstallationTabs() {
           className="text-center"
         >
           <h2 className="text-balance text-3xl font-bold text-foreground sm:text-4xl">
-            מתקינים ב-<span className="text-primary">3 צעדים</span> ומתחילים לצפות
+            {t.h2}
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground">
-            בחרו את המכשיר שלכם. נתקעתם? שלחו לנו הודעה בוואטסאפ ונעשה את זה איתכם – בחינם.
+            {t.p}
           </p>
         </motion.div>
 

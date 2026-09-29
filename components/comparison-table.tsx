@@ -3,20 +3,39 @@
 import { motion } from "framer-motion"
 import { Check, X } from "lucide-react"
 import { site } from "@/lib/site"
+import type { Locale } from "@/lib/i18n"
 
 type Cell = boolean | string
 
-const rows: { feature: string; us: Cell; cable: Cell }[] = [
-  { feature: "מחיר חודשי", us: "מ-₪21", cable: "₪150–₪300" },
-  { feature: "התחייבות", us: "ללא", cable: "12–36 חודשים" },
-  { feature: "טכנאי והתקנה", us: "לא צריך", cable: "נדרש" },
-  { feature: "ממיר / צלחת", us: "לא צריך", cable: "חובה" },
-  { feature: "ערוצים בינלאומיים", us: `${site.channels}+`, cable: "מאות" },
-  { feature: "ספורט ישראלי ואירופאי בחבילה אחת", us: true, cable: false },
-  { feature: "צפייה בטלפון ובמחשב", us: true, cable: "בתוספת תשלום" },
-  { feature: "4K", us: true, cable: "חלקי" },
-  { feature: `החזר כספי תוך ${site.refundDays} ימים`, us: true, cable: false },
-]
+const rows: Record<Locale, { feature: string; us: Cell; cable: Cell }[]> = {
+  he: [
+    { feature: "מחיר חודשי", us: "מ-₪21", cable: "₪150–₪300" },
+    { feature: "התחייבות", us: "ללא", cable: "12–36 חודשים" },
+    { feature: "טכנאי והתקנה", us: "לא צריך", cable: "נדרש" },
+    { feature: "ממיר / צלחת", us: "לא צריך", cable: "חובה" },
+    { feature: "ערוצים בינלאומיים", us: `${site.channels}+`, cable: "מאות" },
+    { feature: "ספורט ישראלי ואירופאי בחבילה אחת", us: true, cable: false },
+    { feature: "צפייה בטלפון ובמחשב", us: true, cable: "בתוספת תשלום" },
+    { feature: "4K", us: true, cable: "חלקי" },
+    { feature: `החזר כספי תוך ${site.refundDays} ימים`, us: true, cable: false },
+  ],
+  en: [
+    { feature: "Monthly price", us: "from ₪21", cable: "₪150–₪300" },
+    { feature: "Contract", us: "None", cable: "12–36 months" },
+    { feature: "Technician & installation", us: "Not needed", cable: "Required" },
+    { feature: "Set-top box / dish", us: "Not needed", cable: "Required" },
+    { feature: "International channels", us: `${site.channels}+`, cable: "Hundreds" },
+    { feature: "Israeli and European sports in one plan", us: true, cable: false },
+    { feature: "Watch on phone and computer", us: true, cable: "Extra cost" },
+    { feature: "4K", us: true, cable: "Partial" },
+    { feature: `${site.refundDays}-day money-back guarantee`, us: true, cable: false },
+  ],
+}
+
+const copy = {
+  he: { vs: "מול כבלים ולוויין", p: "אותם ערוצים ישראליים, הרבה יותר תוכן – ובלי חוזה, טכנאי או ממיר.", cable: "כבלים / לוויין" },
+  en: { vs: "vs. cable and satellite", p: "The same Israeli channels, far more content – with no contract, technician or set-top box.", cable: "Cable / satellite" },
+}
 
 function CellView({ value, highlight }: { value: Cell; highlight?: boolean }) {
   if (value === true)
@@ -34,7 +53,8 @@ function CellView({ value, highlight }: { value: Cell; highlight?: boolean }) {
   return <span className={`text-sm ${highlight ? "font-semibold text-primary" : "text-muted-foreground"}`}>{value}</span>
 }
 
-export default function ComparisonTable() {
+export default function ComparisonTable({ locale = "he" }: { locale?: Locale }) {
+  const t = copy[locale]
   return (
     <section className="relative px-4 py-20">
       <div className="mx-auto max-w-4xl">
@@ -45,10 +65,10 @@ export default function ComparisonTable() {
           className="text-center"
         >
           <h2 className="text-balance text-3xl font-bold text-foreground sm:text-4xl">
-            <span className="text-primary">{site.name}</span> מול כבלים ולוויין
+            <span className="text-primary">{site.name}</span> {t.vs}
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground">
-            אותם ערוצים ישראליים, הרבה יותר תוכן – ובלי חוזה, טכנאי או ממיר.
+            {t.p}
           </p>
         </motion.div>
 
@@ -63,13 +83,13 @@ export default function ComparisonTable() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border/30">
-                  <th className="px-6 py-4 text-right text-sm font-medium text-muted-foreground"></th>
+                  <th className="px-6 py-4 text-start text-sm font-medium text-muted-foreground"></th>
                   <th className="px-6 py-4 text-center text-sm font-semibold text-primary">{site.name}</th>
-                  <th className="px-6 py-4 text-center text-sm font-medium text-muted-foreground">כבלים / לוויין</th>
+                  <th className="px-6 py-4 text-center text-sm font-medium text-muted-foreground">{t.cable}</th>
                 </tr>
               </thead>
               <tbody>
-                {rows.map((row, index) => (
+                {rows[locale].map((row, index) => (
                   <tr
                     key={row.feature}
                     className={`border-b border-border/10 ${index % 2 === 0 ? "bg-secondary/20" : ""}`}

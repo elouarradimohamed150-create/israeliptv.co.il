@@ -24,6 +24,7 @@ export interface Plan {
   prices: Record<Devices, number> // ILS
   popular?: boolean
   perks: string[]
+  perksEn: string[]
 }
 
 // Prices in ILS, per number of simultaneous devices.
@@ -35,6 +36,7 @@ export const plans: Plan[] = [
     months: null,
     prices: { 1: 13, 2: 25, 3: 39 },
     perks: ['מושלם לבדיקת השירות', 'הפעלה תוך דקות'],
+    perksEn: ['Perfect for testing the service', 'Activated within minutes'],
   },
   {
     id: '1m',
@@ -43,6 +45,7 @@ export const plans: Plan[] = [
     months: 1,
     prices: { 1: 55, 2: 94, 3: 126 },
     perks: ['ללא התחייבות'],
+    perksEn: ['No commitment'],
   },
   {
     id: '3m',
@@ -51,6 +54,7 @@ export const plans: Plan[] = [
     months: 3,
     prices: { 1: 119, 2: 176, 3: 256 },
     perks: ['גמישות ללא התחייבות ארוכה'],
+    perksEn: ['Flexible, no long commitment'],
   },
   {
     id: '6m',
@@ -59,6 +63,7 @@ export const plans: Plan[] = [
     months: 6,
     prices: { 1: 159, 2: 272, 3: 379 },
     perks: ['צפייה חוזרת (Catch-Up)'],
+    perksEn: ['Catch-Up TV'],
   },
   {
     id: '12m',
@@ -68,6 +73,7 @@ export const plans: Plan[] = [
     prices: { 1: 249, 2: 353, 3: 612 },
     popular: true,
     perks: ['צפייה חוזרת (Catch-Up)', 'עדיפות בתמיכה'],
+    perksEn: ['Catch-Up TV', 'Priority support'],
   },
   {
     id: '24m',
@@ -76,6 +82,7 @@ export const plans: Plan[] = [
     months: 24,
     prices: { 1: 365, 2: 645, 3: 962 },
     perks: ['המחיר החודשי הנמוך ביותר', 'צפייה חוזרת (Catch-Up)', 'תמיכת VIP'],
+    perksEn: ['Lowest monthly price', 'Catch-Up TV', 'VIP support'],
   },
 ]
 
@@ -88,4 +95,15 @@ export const planFeatures = [
   'עדכונים אוטומטיים ללא עלות',
   `החזר כספי תוך ${site.refundDays} ימים`,
   'תמיכה בעברית 24/7',
+]
+
+export const planFeaturesEn = [
+  `${site.channels}+ live channels – Israel and worldwide`,
+  `${site.vod}+ movies and series on demand`,
+  '4K / FHD / HD quality',
+  'Anti-Freeze technology',
+  'Full TV guide (EPG)',
+  'Free automatic updates',
+  `${site.refundDays}-day money-back guarantee`,
+  '24/7 support in Hebrew and English',
 ]

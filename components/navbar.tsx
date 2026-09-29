@@ -2,21 +2,59 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Globe } from "lucide-react"
 import Link from "next/link"
 import { waBuy } from "@/lib/whatsapp"
+import type { Locale } from "@/lib/i18n"
 
-const navLinks = [
-  { label: "ראשי", href: "/" },
-  { label: "מחירים", href: "/#pricing" },
-  { label: "רשימת ערוצים", href: "/channels-list" },
-  { label: "מדריך התקנה", href: "/#installation" },
-  { label: "בלוג", href: "/blog" },
-  { label: "משווקים", href: "/#reseller" },
-]
+const copy = {
+  he: {
+    links: [
+      { label: "ראשי", href: "/" },
+      { label: "מחירים", href: "/#pricing" },
+      { label: "רשימת ערוצים", href: "/channels-list" },
+      { label: "מדריך התקנה", href: "/#installation" },
+      { label: "בלוג", href: "/blog" },
+      { label: "משווקים", href: "/#reseller" },
+    ],
+    order: "הזמינו עכשיו",
+    menu: "פתיחת תפריט",
+    switchLabel: "English",
+    switchHref: "/en",
+    switchLang: "en",
+  },
+  en: {
+    links: [
+      { label: "Home", href: "/en" },
+      { label: "Pricing", href: "/en#pricing" },
+      { label: "Channels", href: "/channels-list" },
+      { label: "Setup", href: "/en#installation" },
+      { label: "FAQ", href: "/en#faq" },
+      { label: "Resellers", href: "/en#reseller" },
+    ],
+    order: "Order now",
+    menu: "Open menu",
+    switchLabel: "עברית",
+    switchHref: "/",
+    switchLang: "he",
+  },
+}
 
-export default function Navbar() {
+export default function Navbar({ locale = "he" }: { locale?: Locale }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const t = copy[locale]
+
+  const langSwitch = (
+    <Link
+      href={t.switchHref}
+      hrefLang={t.switchLang}
+      lang={t.switchLang}
+      className="flex items-center gap-1.5 rounded-lg border border-border/50 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+    >
+      <Globe className="h-4 w-4" />
+      {t.switchLabel}
+    </Link>
+  )
 
   return (
     <motion.nav
@@ -27,15 +65,13 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tight" dir="ltr">
+          <Link href={locale === "en" ? "/en" : "/"} className="flex items-center gap-2 text-xl font-bold tracking-tight" dir="ltr">
             <span className="text-white">Israel</span>
             <span className="text-primary">IPTV</span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden items-center gap-7 md:flex">
-            {navLinks.map((link) => (
+          <div className="hidden items-center gap-6 md:flex">
+            {t.links.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -44,22 +80,21 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-
+            {langSwitch}
             <Link
               href={waBuy()}
               target="_blank"
               rel="noopener noreferrer"
               className="neon-glow rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110"
             >
-              הזמינו עכשיו
+              {t.order}
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
             className="text-foreground md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="פתיחת תפריט"
+            aria-label={t.menu}
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -67,7 +102,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -77,7 +111,7 @@ export default function Navbar() {
             className="glass border-t border-border/30 md:hidden"
           >
             <div className="flex flex-col gap-1 px-4 py-4">
-              {navLinks.map((link) => (
+              {t.links.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
@@ -87,13 +121,14 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              <div className="mt-2 px-3">{langSwitch}</div>
               <Link
                 href={waBuy()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="neon-glow mt-2 rounded-lg bg-primary px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground"
               >
-                הזמינו עכשיו
+                {t.order}
               </Link>
             </div>
           </motion.div>

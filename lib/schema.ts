@@ -1,5 +1,6 @@
 import { site, plans } from '@/lib/site'
-import { faqs } from '@/lib/faq'
+import { faqs, faqsEn } from '@/lib/faq'
+import type { Locale } from '@/lib/i18n'
 
 // Stable @ids so every page points at the same "Israel IPTV" entity
 export const ORG_ID = `${site.url}/#organization`
@@ -29,7 +30,7 @@ export const website = {
   '@id': WEBSITE_ID,
   name: site.name,
   url: site.url,
-  inLanguage: 'he-IL',
+  inLanguage: ['he-IL', 'en'],
   publisher: { '@id': ORG_ID },
 }
 
@@ -51,15 +52,24 @@ export const service = {
   })),
 }
 
-export const faqPage = {
-  '@type': 'FAQPage',
-  '@id': `${site.url}/#faq`,
-  mainEntity: faqs.map((f) => ({
-    '@type': 'Question',
-    name: f.question,
-    acceptedAnswer: { '@type': 'Answer', text: f.answer },
-  })),
+export function faqPageFor(locale: Locale) {
+  const items = locale === 'en' ? faqsEn : faqs
+  return {
+    '@type': 'FAQPage',
+    '@id': `${site.url}${locale === 'en' ? '/en' : '/'}#faq`,
+    inLanguage: locale === 'en' ? 'en' : 'he-IL',
+    mainEntity: items.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  }
 }
+
+export const faqPage = faqPageFor('he')
+
+// hreflang pairs for the two homepages
+export const homeLanguages = { 'he-IL': '/', en: '/en', 'x-default': '/' }
 
 export function graph(...nodes: object[]) {
   return { '@context': 'https://schema.org', '@graph': nodes }

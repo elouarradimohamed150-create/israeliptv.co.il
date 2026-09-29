@@ -55,3 +55,54 @@ export const faqs = [
       'כן. משווקים מקבלים פאנל ניהול, קרדיטים במחיר סיטונאי ותמיכה ישירה. פרטים בתוכנית המשווקים או בוואטסאפ.',
   },
 ]
+
+export const faqsEn = [
+  {
+    question: 'What is Israel IPTV?',
+    answer: `Israel IPTV is an internet TV (IPTV) subscription for viewers in Israel and Israelis abroad. It includes ${site.channels}+ live channels – among them Kan 11, Keshet 12, Reshet 13 and the Israeli sports channels – plus ${site.vod}+ movies and series in up to 4K. It works on Smart TVs, Fire Stick, Android, iPhone and computers, starts at ₪55 per month, has no contract and comes with a ${site.refundDays}-day money-back guarantee.`,
+  },
+  {
+    question: 'How much does Israel IPTV cost?',
+    answer:
+      'You can start with a 1-day pass for ₪13 to test the service. One month costs ₪55 and a full year is ₪249 – about ₪21 per month. Plans for 2 or 3 simultaneous devices are also available.',
+  },
+  {
+    question: 'How do I order and pay?',
+    answer:
+      'Click "Order on WhatsApp" next to the plan you want. A WhatsApp chat opens with your plan already filled in. Our team sends a secure payment link (PayPal or credit card), and your login details arrive right after payment is confirmed.',
+  },
+  {
+    question: 'How fast is my subscription activated?',
+    answer:
+      'Usually within a few minutes of payment. Orders are checked manually for security, so at busy times it can take up to a few hours. If you have not received your details, message us on WhatsApp.',
+  },
+  {
+    question: 'Which devices does it work on?',
+    answer:
+      'Samsung and LG Smart TVs, Android TV, Amazon Fire Stick, MAG boxes, iPhone, iPad, Apple TV, Android phones and tablets, and Windows and Mac computers.',
+  },
+  {
+    question: 'Can I watch on several devices at once?',
+    answer:
+      'Each plan is set for a number of simultaneous devices: 1, 2 or 3. Choose the number of devices in the pricing table. Need more than 3? Contact us and we will build a plan for you.',
+  },
+  {
+    question: 'Can I watch Israeli TV from abroad?',
+    answer:
+      'Yes. Israel IPTV works over any internet connection, so Israelis living or travelling abroad can watch Kan 11, Keshet 12, Reshet 13 and Israeli sports from anywhere – no VPN needed.',
+  },
+  {
+    question: 'What if the service is not right for me?',
+    answer: `You get a full refund within ${site.refundDays} days of activation. Contact us on WhatsApp and the request is handled within 1–3 business days.`,
+  },
+  {
+    question: 'How do I renew?',
+    answer:
+      'There is no automatic billing. We remind you before your plan ends, and you renew on WhatsApp with the same login details.',
+  },
+  {
+    question: 'Can I become a reseller?',
+    answer:
+      'Yes. Resellers get a management panel, credits at wholesale prices and direct support. Contact us on WhatsApp for details.',
+  },
+]

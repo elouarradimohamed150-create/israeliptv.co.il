@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Heebo, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { site } from '@/lib/site'
-import './globals.css'
+import '../globals.css'
 
 const heebo = Heebo({ subsets: ['hebrew', 'latin'], variable: '--font-heebo' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })

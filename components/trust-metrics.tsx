@@ -3,12 +3,13 @@
 import { useEffect, useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { Tv, Film, Server, Headphones } from "lucide-react"
+import type { Locale } from "@/lib/i18n"
 
 const metrics = [
-  { icon: Tv, value: 34000, suffix: "+", label: "ערוצים בשידור חי" },
-  { icon: Film, value: 130000, suffix: "+", label: "סרטים וסדרות לפי דרישה" },
-  { icon: Server, value: 100, suffix: "+", label: "שרתים יציבים ברחבי העולם" },
-  { icon: Headphones, value: 24, suffix: "/7", label: "תמיכה בעברית בוואטסאפ" },
+  { icon: Tv, value: 34000, suffix: "+", label: "ערוצים בשידור חי", labelEn: "Live TV channels" },
+  { icon: Film, value: 130000, suffix: "+", label: "סרטים וסדרות לפי דרישה", labelEn: "Movies & series on demand" },
+  { icon: Server, value: 100, suffix: "+", label: "שרתים יציבים ברחבי העולם", labelEn: "Stable servers worldwide" },
+  { icon: Headphones, value: 24, suffix: "/7", label: "תמיכה בעברית בוואטסאפ", labelEn: "WhatsApp support" },
 ]
 
 function AnimatedCounter({
@@ -53,7 +54,7 @@ function AnimatedCounter({
   )
 }
 
-export default function TrustMetrics() {
+export default function TrustMetrics({ locale = "he" }: { locale?: Locale }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
@@ -77,7 +78,7 @@ export default function TrustMetrics() {
               suffix={metric.suffix}
               isInView={isInView}
             />
-            <span className="text-sm text-muted-foreground">{metric.label}</span>
+            <span className="text-sm text-muted-foreground">{locale === "en" ? metric.labelEn : metric.label}</span>
           </motion.div>
         ))}
       </div>

@@ -23,7 +23,7 @@ export default function ResellerCTA() {
               <Briefcase className="h-7 w-7 text-primary" />
             </div>
             <h2 className="text-balance text-3xl font-bold text-foreground sm:text-4xl">
-              תוכנית המשווקים של <span className="text-primary">{site.name}</span>
+              הפכו ל<span className="text-primary">משווקים</span> שלנו
             </h2>
             <p className="mt-3 max-w-lg text-pretty text-muted-foreground">
               מכרו מנויים תחת השם שלכם: קרדיטים במחיר סיטונאי, פאנל לניהול לקוחות ופתיחת מנויים בעצמכם, ותמיכה ישירה מהצוות שלנו.

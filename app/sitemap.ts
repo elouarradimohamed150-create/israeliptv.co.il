@@ -7,7 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const latest = posts[0] ? new Date(posts[0].modified) : new Date()
 
   return [
-    { url: site.url, lastModified: latest, changeFrequency: 'weekly', priority: 1 },
+    { url: site.url, lastModified: new Date(site.lastUpdated), changeFrequency: 'weekly', priority: 1 },
+    { url: `${site.url}/about`, lastModified: new Date(site.lastUpdated), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${site.url}/channels-list`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${site.url}/blog`, lastModified: latest, changeFrequency: 'weekly', priority: 0.8 },
     ...posts.map((p) => ({

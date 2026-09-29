@@ -6,6 +6,7 @@ const columns = [
   {
     title: "ניווט",
     links: [
+      { label: "אודות Israel IPTV", href: "/about" },
       { label: "מחירים וחבילות", href: "/#pricing" },
       { label: "רשימת ערוצים", href: "/channels-list" },
       { label: "מדריך התקנה", href: "/#installation" },

@@ -3,6 +3,10 @@ import { site } from '@/lib/site'
 // Shared by the FAQ section and the FAQPage JSON-LD, so the two always match.
 export const faqs = [
   {
+    question: 'מה זה Israel IPTV?',
+    answer: `Israel IPTV הוא שירות מנויי טלוויזיה באינטרנט (IPTV) לצופים בישראל ולישראלים בחו״ל. המנוי כולל ${site.channels}+ ערוצים בשידור חי – בהם כאן 11, קשת 12, רשת 13 וערוצי הספורט – ו-${site.vod}+ סרטים וסדרות באיכות עד 4K. הוא עובד על טלוויזיות חכמות, Fire Stick, אנדרואיד, אייפון ומחשב, עולה מ-₪55 לחודש, ללא התחייבות ועם החזר כספי תוך ${site.refundDays} ימים.`,
+  },
+  {
     question: 'מה זה IPTV ואיך זה שונה מכבלים או לוויין?',
     answer:
       'IPTV (Internet Protocol Television) מעביר את שידורי הטלוויזיה דרך חיבור האינטרנט במקום דרך כבל או צלחת. אין צורך בטכנאי, בממיר או בהתחייבות – מספיק אינטרנט יציב ואפליקציה חינמית במכשיר שכבר יש לכם בבית.',

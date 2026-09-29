@@ -1,6 +1,10 @@
 // Brand details for israeliptv.co.il. Change them here, not in components.
 export const site = {
   name: 'Israel IPTV',
+  // Focus keyword: always the exact English phrase "Israel IPTV"
+  keyword: 'Israel IPTV',
+  // Shown as "עודכן לאחרונה" and used as dateModified - bump when prices/facts change
+  lastUpdated: '2026-09-29',
   url: 'https://israeliptv.co.il',
   domain: 'israeliptv.co.il',
   whatsappNumber: '212707711512',

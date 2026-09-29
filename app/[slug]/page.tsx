@@ -7,6 +7,7 @@ import { Clock, ArrowRight, CalendarDays } from 'lucide-react'
 import { getAllPosts, getPostBySlug, readingTime } from '@/lib/posts'
 import { waTrial } from '@/lib/whatsapp'
 import { site } from '@/lib/site'
+import { graph, organization, website, ORG_ID, WEBSITE_ID } from '@/lib/schema'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
@@ -33,6 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     alternates: { canonical: `/${post.slug}` },
     openGraph: {
+      url: `/${post.slug}`,
       title: post.title,
       description,
       type: 'article',
@@ -53,18 +55,28 @@ export default async function BlogPostPage({ params }: Props) {
   // Many posts repeat the title as an <h1> at the top of the body
   const content = post.content.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>/, '')
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
+  const url = `${site.url}/${encodeURIComponent(post.slug)}`
+  const articleJsonLd = graph(organization, website, {
     '@type': 'BlogPosting',
+    '@id': `${url}#article`,
     headline: post.title,
     description: post.seoDescription || post.excerpt,
     datePublished: post.date,
     dateModified: post.modified,
     image: post.featuredImage ? `${site.url}${post.featuredImage.src}` : undefined,
-    mainEntityOfPage: `${site.url}/${encodeURIComponent(post.slug)}`,
-    author: { '@type': 'Organization', name: site.name },
-    publisher: { '@type': 'Organization', name: site.name, url: site.url },
-  }
+    mainEntityOfPage: url,
+    inLanguage: 'he-IL',
+    isPartOf: { '@id': WEBSITE_ID },
+    author: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+  }, {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: site.name, item: site.url },
+      { '@type': 'ListItem', position: 2, name: 'בלוג', item: `${site.url}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: url },
+    ],
+  })
 
   const related = getAllPosts()
     .filter((p) => p.slug !== post.slug)
@@ -117,6 +129,11 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* ── Article body ── */}
       <main className="mx-auto max-w-3xl px-4 pb-24 sm:px-6">
+        <nav aria-label="breadcrumb" className="mt-6 text-sm text-[#94A3B8]">
+          <Link href="/" className="hover:text-[#10B981]">Israel IPTV</Link>
+          <span aria-hidden> › </span>
+          <Link href="/blog" className="hover:text-[#10B981]">בלוג</Link>
+        </nav>
         <div className="mb-8 mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-b border-[#1E293B] pb-6 text-sm text-[#94A3B8]">
           <span className="flex items-center gap-1.5">
             <CalendarDays className="h-4 w-4 text-[#10B981]" />
@@ -130,8 +147,23 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className="wp-content" dangerouslySetInnerHTML={{ __html: content }} />
 
+        {/* ── Brand box ── */}
+        <aside className="mt-16 rounded-2xl border border-[#1E293B] bg-[#151B23] p-6 text-sm leading-relaxed text-[#94A3B8]">
+          <p>
+            המאמר נכתב על ידי צוות{' '}
+            <Link href="/" className="font-semibold text-[#10B981] hover:underline">
+              Israel IPTV
+            </Link>{' '}
+            – שירות IPTV לצופים בישראל עם {site.channels}+ ערוצים, תמיכה בעברית 24/7 והחזר כספי תוך{' '}
+            {site.refundDays} ימים.{' '}
+            <Link href="/about" className="text-[#10B981] hover:underline">
+              עוד על Israel IPTV
+            </Link>
+          </p>
+        </aside>
+
         {/* ── CTA ── */}
-        <div className="mt-16 overflow-hidden rounded-2xl border border-[#10B981]/20 bg-gradient-to-br from-[#0d1f1a] to-[#0B0F13]">
+        <div className="mt-8 overflow-hidden rounded-2xl border border-[#10B981]/20 bg-gradient-to-br from-[#0d1f1a] to-[#0B0F13]">
           <div className="p-8 text-center sm:p-10">
             <span className="mb-3 inline-block rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
               רוצים לנסות?

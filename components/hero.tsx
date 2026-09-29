@@ -36,8 +36,9 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-balance text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          כל הטלוויזיה הישראלית,{" "}
-          <span className="text-primary">בלי כבלים ובלי צלחת</span>
+          <span dir="ltr" className="text-primary">Israel IPTV</span>
+          <br />
+          כל הטלוויזיה הישראלית, בלי כבלים ובלי צלחת
         </motion.h1>
 
         <motion.p
@@ -46,7 +47,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground sm:text-xl"
         >
-          {site.name} מביא לכם את כאן 11, קשת 12, רשת 13, ערוצי הספורט והסרטים – יחד עם{" "}
+          <strong className="text-foreground">Israel IPTV</strong> הוא שירות טלוויזיה באינטרנט שמביא לכם את כאן 11, קשת 12, רשת 13, ערוצי הספורט והסרטים – יחד עם{" "}
           {site.channels}+ ערוצים מכל העולם ו-{site.vod}+ סרטים וסדרות. עובד על הטלוויזיה, הטלפון
           והמחשב, מ-₪55 לחודש.
         </motion.p>

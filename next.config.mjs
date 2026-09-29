@@ -9,6 +9,7 @@ const nextConfig = {
     '/channels-list': ['./data/channels.json'],
     '/blog': ['./content/posts/**'],
     '/sitemap.xml': ['./content/posts/**'],
+    '/llms.txt': ['./content/posts/**'],
   },
   // Old WordPress URLs -> new pages (permanent, so Google transfers rankings)
   async redirects() {
@@ -18,7 +19,7 @@ const nextConfig = {
       { source: '/refund-and-cancellation-policy', destination: '/refund-policy', permanent: true },
       { source: '/installation-guide', destination: '/#installation', permanent: true },
       { source: '/reseller-progam', destination: '/#reseller', permanent: true },
-      { source: '/about-us', destination: '/', permanent: true },
+      { source: '/about-us', destination: '/about', permanent: true },
       { source: '/contact-us', destination: '/', permanent: true },
       { source: '/shop', destination: '/#pricing', permanent: true },
       { source: '/cart', destination: '/#pricing', permanent: true },

@@ -36,7 +36,7 @@ export default function ChannelSearch() {
           viewport={{ once: true }}
           className="text-balance text-3xl font-bold text-foreground sm:text-4xl"
         >
-          הערוצים הישראליים שאתם אוהבים, <span className="text-primary">ועוד {site.channels} מכל העולם</span>
+          ערוצי <span className="text-primary">Israel IPTV</span>: כל הערוצים הישראליים ועוד {site.channels} מכל העולם
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}

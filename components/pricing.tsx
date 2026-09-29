@@ -29,7 +29,7 @@ export default function Pricing() {
           className="text-center"
         >
           <h2 className="text-balance text-3xl font-bold text-foreground sm:text-4xl">
-            מחירי <span className="text-primary">מנוי IPTV</span> – בוחרים תקופה ומספר מכשירים
+            מחירי <span className="text-primary">Israel IPTV</span> – בוחרים תקופה ומספר מכשירים
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground">
             כל החבילות כוללות את אותו תוכן מלא. ככל שהתקופה ארוכה יותר, המחיר לחודש יורד.

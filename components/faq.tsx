@@ -20,7 +20,7 @@ export default function FAQ() {
           className="text-center"
         >
           <h2 className="text-balance text-3xl font-bold text-foreground sm:text-4xl">
-            <span className="text-primary">שאלות נפוצות</span> לפני שמזמינים
+            שאלות נפוצות על <span className="text-primary">Israel IPTV</span>
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground">
             לא מצאתם תשובה? כתבו לנו בוואטסאפ – עונים בעברית, מסביב לשעון.

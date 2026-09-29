@@ -1,6 +1,7 @@
 import Navbar from '@/components/navbar'
 import Hero from '@/components/hero'
 import TrustMetrics from '@/components/trust-metrics'
+import KeyFacts from '@/components/key-facts'
 import ChannelSearch from '@/components/channel-search'
 import Pricing from '@/components/pricing'
 import InstallationTabs from '@/components/installation-tabs'
@@ -9,58 +10,30 @@ import ResellerCTA from '@/components/reseller-cta'
 import FAQ from '@/components/faq'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
-import { site, plans } from '@/lib/site'
-import { faqs } from '@/lib/faq'
+import { site } from '@/lib/site'
+import { graph, organization, website, service, faqPage, WEBSITE_ID, SERVICE_ID } from '@/lib/schema'
 
 export const metadata = {
   alternates: { canonical: '/' },
+  openGraph: { url: '/' },
 }
 
-const jsonLd = [
+const jsonLd = graph(
+  organization,
+  website,
   {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: site.name,
+    '@type': 'WebPage',
+    '@id': `${site.url}/#webpage`,
     url: site.url,
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: `+${site.whatsappNumber}`,
-      contactType: 'customer service',
-      availableLanguage: ['Hebrew', 'English', 'Arabic'],
-    },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: site.name,
-    url: site.url,
+    name: `${site.name} – מנוי IPTV לערוצים ישראליים, ספורט וסרטים ב-4K`,
+    isPartOf: { '@id': WEBSITE_ID },
+    about: { '@id': SERVICE_ID },
     inLanguage: 'he-IL',
+    dateModified: site.lastUpdated,
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.question,
-      acceptedAnswer: { '@type': 'Answer', text: f.answer },
-    })),
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: `מנוי ${site.name}`,
-    description: `${site.channels}+ ערוצים בשידור חי ו-${site.vod}+ סרטים וסדרות באיכות עד 4K.`,
-    brand: { '@type': 'Brand', name: site.name },
-    offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'ILS',
-      lowPrice: Math.min(...plans.map((p) => p.prices[1])),
-      highPrice: Math.max(...plans.map((p) => p.prices[3])),
-      offerCount: plans.length * 3,
-      availability: 'https://schema.org/InStock',
-    },
-  },
-]
+  service,
+  faqPage,
+)
 
 export default function Home() {
   return (
@@ -68,6 +41,7 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Navbar />
       <Hero />
+      <KeyFacts />
       <TrustMetrics />
       <ChannelSearch />
       <Pricing />

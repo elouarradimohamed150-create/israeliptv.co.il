@@ -1,0 +1,362 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Apollo Group TV Dark Theme - Modern Midnight (User Specific) */
+  --background: #0B0F13;
+  --foreground: #F8FAFC;
+  --card: #151B23;
+  --card-foreground: #F8FAFC;
+  --popover: #151B23;
+  --popover-foreground: #F8FAFC;
+  --primary: #10B981;
+  --primary-foreground: #0B0F13;
+  --secondary: #1E293B; 
+  --secondary-foreground: #F8FAFC;
+  --muted: #151B23;
+  --muted-foreground: #94A3B8;
+  --accent: #151B23;
+  --accent-foreground: #10B981;
+  --destructive: #EF4444;
+  --destructive-foreground: #F8FAFC;
+  --border: #1E293B;
+  --input: #1E293B;
+  --ring: #10B981;
+  --chart-1: #10B981;
+  --chart-2: #3B82F6;
+  --chart-3: #14B8A6;
+  --chart-4: #8B5CF6;
+  --chart-5: #EC4899;
+  --radius: 0.75rem;
+  --sidebar: #0B0F13;
+  --sidebar-foreground: #F8FAFC;
+  --sidebar-primary: #10B981;
+  --sidebar-primary-foreground: #0B0F13;
+  --sidebar-accent: #151B23;
+  --sidebar-accent-foreground: #F8FAFC;
+  --sidebar-border: #1E293B;
+  --sidebar-ring: #10B981;
+}
+
+@theme inline {
+  --font-sans: 'Heebo', 'Heebo Fallback', sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Neon glow for primary buttons */
+.neon-glow {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(16, 185, 129, 0.25), 0 0 60px rgba(16, 185, 129, 0.1);
+}
+
+.neon-glow:hover {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.7), 0 0 60px rgba(16, 185, 129, 0.35), 0 0 90px rgba(16, 185, 129, 0.15);
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Animated counter */
+@keyframes counter-glow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  }
+}
+
+.counter-glow {
+  animation: counter-glow 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   WordPress article content — editorial styles
+   ═══════════════════════════════════════════════ */
+
+.wp-content {
+  direction: rtl;
+  text-align: right;
+  color: #cbd5e1;
+  line-height: 1.9;
+  font-size: 1.0625rem;
+}
+
+/* ── Hide injected WP promo elements ── */
+.wp-content a.custom-button,
+.wp-content h4:has(a.custom-button),
+.wp-content strong:has(a.custom-button) {
+  display: none !important;
+}
+
+/* ── Headings ── */
+.wp-content h1,
+.wp-content h2,
+.wp-content h3,
+.wp-content h4,
+.wp-content h5 {
+  color: #F8FAFC;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.wp-content h2 {
+  font-size: 1.625rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #1E293B;
+  margin-top: 3.5rem;
+}
+
+.wp-content h3 {
+  font-size: 1.25rem;
+  color: #10B981;
+  margin-top: 2.5rem;
+}
+
+.wp-content h4 {
+  font-size: 1.05rem;
+  color: #e2e8f0;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+/* ── Body text ── */
+.wp-content p {
+  margin-bottom: 1.5rem;
+}
+
+/* ── Links ── */
+.wp-content a {
+  color: #10B981;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+.wp-content a:hover { color: #34d399; }
+
+/* ── Inline ── */
+.wp-content strong { color: #F8FAFC; font-weight: 700; }
+.wp-content em     { color: #e2e8f0; font-style: italic; }
+.wp-content code   {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: #151B23;
+  color: #10B981;
+  padding: 0.15em 0.4em;
+  border-radius: 0.3rem;
+  border: 1px solid #1E293B;
+}
+
+/* ── Lists ── */
+.wp-content ul,
+.wp-content ol {
+  margin-bottom: 1.5rem;
+  padding-inline-start: 1.75rem;
+}
+.wp-content ul { list-style-type: disc; }
+.wp-content ol { list-style-type: decimal; }
+.wp-content li  { margin-bottom: 0.5rem; }
+
+/* ── Blockquote ── */
+.wp-content blockquote {
+  position: relative;
+  border-inline-start: 4px solid #10B981;
+  margin: 2.5rem 0;
+  padding: 1.25rem 1.5rem;
+  background: rgba(16, 185, 129, 0.04);
+  border-start-end-radius: 0.75rem;
+  border-end-end-radius: 0.75rem;
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.7;
+}
+.wp-content blockquote p { margin-bottom: 0; }
+
+/* ── Horizontal rule ── */
+.wp-content hr {
+  border: none;
+  border-top: 1px solid #1E293B;
+  margin: 3rem 0;
+}
+
+/* ── Table ── */
+.wp-content .table-wrapper,
+.wp-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.wp-content th {
+  background: #151B23;
+  color: #F8FAFC;
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  text-align: start;
+  border: 1px solid #1E293B;
+  white-space: nowrap;
+}
+.wp-content td {
+  padding: 0.7rem 1rem;
+  border: 1px solid #1E293B;
+  color: #94A3B8;
+  vertical-align: top;
+}
+.wp-content tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+/* ── Images ── */
+.wp-content figure { margin: 2.5rem 0; }
+.wp-content figure img { margin: 0 auto; }
+.wp-content figcaption { text-align: center; font-size: 0.85rem; color: #94A3B8; margin-top: 0.75rem; }
+.wp-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.875rem;
+  margin: 2.5rem auto;
+  display: block;
+  border: 1px solid #1E293B;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+/* ── Section ── */
+.wp-content section { display: block; margin-bottom: 1.5rem; }
+
+/* ── Table of contents nav ── */
+.wp-content nav {
+  background: #0f1923;
+  border: 1px solid #1E293B;
+  border-inline-start: 4px solid #10B981;
+  border-start-end-radius: 0.875rem;
+  border-end-end-radius: 0.875rem;
+  padding: 1.5rem 1.75rem;
+  margin: 2.5rem 0;
+}
+.wp-content nav h2 {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #10B981;
+  margin: 0 0 1rem;
+  border: none;
+  padding: 0;
+}
+.wp-content nav ul {
+  margin: 0;
+  padding-inline-start: 0;
+  list-style: none;
+  counter-reset: toc;
+}
+.wp-content nav ul li {
+  counter-increment: toc;
+  margin-bottom: 0.45rem;
+  font-size: 0.9rem;
+  color: #94A3B8;
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  transition: color 0.15s;
+}
+.wp-content nav ul li:hover { color: #F8FAFC; }
+.wp-content nav ul li::before {
+  content: counter(toc, decimal-leading-zero);
+  color: #10B981;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}

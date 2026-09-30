@@ -5,7 +5,8 @@ export const site = {
   keyword: 'Israel IPTV',
   // Shown as "עודכן לאחרונה" and used as dateModified - bump when prices/facts change
   lastUpdated: '2026-09-29',
-  url: 'https://israeliptv.co.il',
+  // Primary address: Vercel redirects the bare domain to www, so canonical URLs use www too
+  url: 'https://www.israeliptv.co.il',
   domain: 'israeliptv.co.il',
   whatsappNumber: '212707711512',
   whatsappDisplay: '+212 707 711 512',

@@ -15,7 +15,7 @@ import { graph, organization, website, service, faqPage, homeLanguages, WEBSITE_
 
 export const metadata = {
   alternates: { canonical: '/', languages: homeLanguages },
-  openGraph: { url: '/' },
+  openGraph: { url: '/', images: ['/opengraph-image'] },
 }
 
 const jsonLd = graph(

@@ -18,12 +18,13 @@ export const metadata: Metadata = {
   },
   description,
   openGraph: {
+    images: ['/opengraph-image'],
     description,
     type: 'website',
     locale: 'he_IL',
     siteName: site.name,
   },
-  twitter: { card: 'summary_large_image' },
+  twitter: { card: 'summary_large_image', images: ['/opengraph-image'] },
   robots: { index: true, follow: true },
 }
 

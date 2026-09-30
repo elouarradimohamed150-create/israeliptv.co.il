@@ -10,6 +10,7 @@ const nextConfig = {
     '/blog': ['./content/posts/**'],
     '/sitemap.xml': ['./content/posts/**'],
     '/llms.txt': ['./content/posts/**'],
+    '/site-map': ['./content/posts/**'],
   },
   // Old WordPress URLs -> new pages (permanent, so Google transfers rankings)
   async redirects() {

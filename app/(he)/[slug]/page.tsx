@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'article',
       publishedTime: post.date,
       modifiedTime: post.modified,
-      images: post.featuredImage ? [{ url: post.featuredImage.src }] : [],
+      images: post.featuredImage ? [{ url: post.featuredImage.src }] : ['/opengraph-image'],
     },
   }
 }

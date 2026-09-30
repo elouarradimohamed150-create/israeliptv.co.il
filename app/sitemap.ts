@@ -10,7 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: site.url, lastModified: new Date(site.lastUpdated), changeFrequency: 'weekly', priority: 1, alternates: { languages: { 'he-IL': site.url, en: `${site.url}/en` } } },
     { url: `${site.url}/en`, lastModified: new Date(site.lastUpdated), changeFrequency: 'weekly', priority: 0.9, alternates: { languages: { 'he-IL': site.url, en: `${site.url}/en` } } },
     { url: `${site.url}/about`, lastModified: new Date(site.lastUpdated), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${site.url}/channels-list`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${site.url}/blog`, lastModified: latest, changeFrequency: 'weekly', priority: 0.8 },
     ...posts.map((p) => ({
       url: `${site.url}/${encodeURIComponent(p.slug)}`,

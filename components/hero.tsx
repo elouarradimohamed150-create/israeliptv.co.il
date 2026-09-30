@@ -14,8 +14,8 @@ const copy = {
     h1: "כל הטלוויזיה הישראלית, בלי כבלים ובלי צלחת",
     intro: (
       <>
-        <strong className="text-foreground">Israel IPTV</strong> הוא שירות טלוויזיה באינטרנט שמביא לכם את כאן 11, קשת
-        12, רשת 13, ערוצי הספורט והסרטים – יחד עם {site.channels}+ ערוצים מכל העולם ו-{site.vod}+ סרטים וסדרות. עובד על
+        <strong className="text-foreground">Israel IPTV</strong> הוא שירות טלוויזיה באינטרנט שמביא לכם את הערוצים
+        הישראליים, ספורט, חדשות וסרטים – יחד עם {site.channels}+ ערוצים מכל העולם ו-{site.vod}+ סרטים וסדרות. עובד על
         הטלוויזיה, הטלפון והמחשב, מ-₪55 לחודש.
       </>
     ),
@@ -27,8 +27,8 @@ const copy = {
     h1: "Israeli TV anywhere – no cable, no satellite dish",
     intro: (
       <>
-        <strong className="text-foreground">Israel IPTV</strong> is an internet TV service that brings you Kan 11,
-        Keshet 12, Reshet 13, Israeli sports and movie channels – together with {site.channels}+ channels from around
+        <strong className="text-foreground">Israel IPTV</strong> is an internet TV service that brings you Israeli
+        channels, sports, news and movies – together with {site.channels}+ channels from around
         the world and {site.vod}+ movies and series. Watch on your TV, phone or computer, from ₪55 per month.
       </>
     ),

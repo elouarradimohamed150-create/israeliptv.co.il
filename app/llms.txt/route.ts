@@ -12,7 +12,7 @@ export function GET() {
 
   const body = `# Israel IPTV
 
-> Israel IPTV (${site.domain}) is an IPTV subscription service for viewers in Israel and Israelis abroad. It streams ${site.channels}+ live TV channels – including Kan 11, Keshet 12, Reshet 13, Channel 14, Sport 5, Sport 1 and ONE – plus ${site.vod}+ movies and series on demand, in up to 4K. No cable, satellite dish, technician or contract is needed.
+> Israel IPTV (${site.domain}) is an IPTV subscription service for viewers in Israel and Israelis abroad. It streams ${site.channels}+ live TV channels – Israeli and international channels, sports, news, movies and kids – plus ${site.vod}+ movies and series on demand, in up to 4K. No cable, satellite dish, technician or contract is needed.
 
 ## Key facts
 
@@ -41,7 +41,6 @@ ${faqsEn.map((f) => `### ${f.question}\n${f.answer}`).join('\n\n')}
 - [Israel IPTV – home (Hebrew)](${site.url}/): overview, prices, installation, FAQ
 - [Israel IPTV – home (English)](${site.url}/en): the same overview in English
 - [About Israel IPTV](${site.url}/about): who we are and how the service works
-- [Channel list](${site.url}/channels-list): searchable list of all live channels
 - [Blog](${site.url}/blog): installation guides and IPTV articles in Hebrew
 - [Terms](${site.url}/terms), [Refund policy](${site.url}/refund-policy), [Privacy policy](${site.url}/privacy-policy)
 

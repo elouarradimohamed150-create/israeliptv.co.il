@@ -11,7 +11,6 @@ Next.js site for Israel IPTV. Ordering is done over WhatsApp; there is no checko
 | WhatsApp order messages | `lib/whatsapp.ts` |
 | Blog posts (one JSON file per post) | `content/posts/` |
 | Blog images | `public/blog-media/` |
-| Channel list (served in pages via `/api/channels`) | `data/channels.json` |
 | Redirects from the old WordPress URLs | `next.config.mjs` |
 
 ## Commands

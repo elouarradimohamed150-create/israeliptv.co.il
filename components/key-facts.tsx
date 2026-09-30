@@ -29,7 +29,7 @@ export default function KeyFacts({ locale = 'he' }: { locale?: Locale }) {
           caption: 'Key facts',
           facts: [
             ['Service', 'Internet TV (IPTV) subscription'],
-            ['Channels', `${site.channels}+ live, including Kan 11, Keshet 12, Reshet 13, Sport 5 and Sport 1`],
+            ['Channels', `${site.channels}+ live – Israeli and international, news, sports, movies and kids`],
             ['Movies & series', `${site.vod}+ titles on demand (VOD)`],
             ['Quality', '4K / FHD / HD with a full TV guide (EPG)'],
             ['Price', `₪${monthly} per month, ₪${yearly} per year (1 device)`],
@@ -52,7 +52,7 @@ export default function KeyFacts({ locale = 'he' }: { locale?: Locale }) {
           caption: 'עובדות עיקריות',
           facts: [
             ['שירות', 'מנוי טלוויזיה באינטרנט (IPTV)'],
-            ['ערוצים', `${site.channels}+ בשידור חי, כולל כאן 11, קשת 12, רשת 13, ספורט 5 וספורט 1`],
+            ['ערוצים', `${site.channels}+ בשידור חי – ישראליים ובינלאומיים, חדשות, ספורט, סרטים וילדים`],
             ['סרטים וסדרות', `${site.vod}+ כותרים לפי דרישה (VOD)`],
             ['איכות', '4K / FHD / HD עם מדריך שידורים (EPG)'],
             ['מחיר', `₪${monthly} לחודש, ₪${yearly} לשנה (מכשיר אחד)`],

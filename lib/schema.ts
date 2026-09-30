@@ -41,7 +41,7 @@ export const service = {
   serviceType: 'IPTV subscription',
   provider: { '@id': ORG_ID },
   areaServed: { '@type': 'Country', name: 'Israel' },
-  description: `${site.name}: ${site.channels}+ live TV channels including Kan 11, Keshet 12, Reshet 13 and sports channels, plus ${site.vod}+ VOD titles. Works on Smart TV, Fire Stick, Android, iOS, MAG and PC.`,
+  description: `${site.name}: ${site.channels}+ live TV channels – Israeli and international, sports, news and movies – plus ${site.vod}+ VOD titles. Works on Smart TV, Fire Stick, Android, iOS, MAG and PC.`,
   offers: plans.map((p) => ({
     '@type': 'Offer',
     name: `${site.name} – ${p.labelEn} (1 device)`,

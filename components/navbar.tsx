@@ -13,7 +13,6 @@ const copy = {
     links: [
       { label: "ראשי", href: "/" },
       { label: "מחירים", href: "/#pricing" },
-      { label: "רשימת ערוצים", href: "/channels-list" },
       { label: "מדריך התקנה", href: "/#installation" },
       { label: "בלוג", href: "/blog" },
       { label: "משווקים", href: "/#reseller" },
@@ -28,7 +27,6 @@ const copy = {
     links: [
       { label: "Home", href: "/en" },
       { label: "Pricing", href: "/en#pricing" },
-      { label: "Channels", href: "/channels-list" },
       { label: "Setup", href: "/en#installation" },
       { label: "FAQ", href: "/en#faq" },
       { label: "Resellers", href: "/en#reseller" },

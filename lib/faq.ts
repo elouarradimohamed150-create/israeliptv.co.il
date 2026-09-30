@@ -4,7 +4,7 @@ import { site } from '@/lib/site'
 export const faqs = [
   {
     question: 'מה זה Israel IPTV?',
-    answer: `Israel IPTV הוא שירות מנויי טלוויזיה באינטרנט (IPTV) לצופים בישראל ולישראלים בחו״ל. המנוי כולל ${site.channels}+ ערוצים בשידור חי – בהם כאן 11, קשת 12, רשת 13 וערוצי הספורט – ו-${site.vod}+ סרטים וסדרות באיכות עד 4K. הוא עובד על טלוויזיות חכמות, Fire Stick, אנדרואיד, אייפון ומחשב, עולה מ-₪55 לחודש, ללא התחייבות ועם החזר כספי תוך ${site.refundDays} ימים.`,
+    answer: `Israel IPTV הוא שירות מנויי טלוויזיה באינטרנט (IPTV) לצופים בישראל ולישראלים בחו״ל. המנוי כולל ${site.channels}+ ערוצים בשידור חי – בהם הערוצים הישראליים, ספורט, חדשות וסרטים – ו-${site.vod}+ סרטים וסדרות באיכות עד 4K. הוא עובד על טלוויזיות חכמות, Fire Stick, אנדרואיד, אייפון ומחשב, עולה מ-₪55 לחודש, ללא התחייבות ועם החזר כספי תוך ${site.refundDays} ימים.`,
   },
   {
     question: 'מה זה IPTV ואיך זה שונה מכבלים או לוויין?',
@@ -59,7 +59,7 @@ export const faqs = [
 export const faqsEn = [
   {
     question: 'What is Israel IPTV?',
-    answer: `Israel IPTV is an internet TV (IPTV) subscription for viewers in Israel and Israelis abroad. It includes ${site.channels}+ live channels – among them Kan 11, Keshet 12, Reshet 13 and the Israeli sports channels – plus ${site.vod}+ movies and series in up to 4K. It works on Smart TVs, Fire Stick, Android, iPhone and computers, starts at ₪55 per month, has no contract and comes with a ${site.refundDays}-day money-back guarantee.`,
+    answer: `Israel IPTV is an internet TV (IPTV) subscription for viewers in Israel and Israelis abroad. It includes ${site.channels}+ live channels – including Israeli channels, sports, news and movies – plus ${site.vod}+ movies and series in up to 4K. It works on Smart TVs, Fire Stick, Android, iPhone and computers, starts at ₪55 per month, has no contract and comes with a ${site.refundDays}-day money-back guarantee.`,
   },
   {
     question: 'How much does Israel IPTV cost?',
@@ -89,7 +89,7 @@ export const faqsEn = [
   {
     question: 'Can I watch Israeli TV from abroad?',
     answer:
-      'Yes. Israel IPTV works over any internet connection, so Israelis living or travelling abroad can watch Kan 11, Keshet 12, Reshet 13 and Israeli sports from anywhere – no VPN needed.',
+      'Yes. Israel IPTV works over any internet connection, so Israelis living or travelling abroad can watch Israeli channels, news and sports from anywhere – no VPN needed.',
   },
   {
     question: 'What if the service is not right for me?',

@@ -7,24 +7,24 @@ import type { Locale } from "@/lib/i18n"
 
 const channels = {
   he: [
-    { name: "כאן 11", show: "חדשות הערב" },
-    { name: "קשת 12", show: "האח הגדול" },
-    { name: "רשת 13", show: "חדשות 13" },
-    { name: "ספורט 5", show: "ליגת העל – שידור חי" },
-    { name: "ONE", show: "יורוליג" },
-    { name: "HOT Cinema", show: "סרט הערב" },
+    { name: "חדשות", show: "המהדורה המרכזית – שידור חי" },
+    { name: "ספורט", show: "כדורגל – שידור חי" },
+    { name: "ריאליטי", show: "הפרק החדש הערב" },
+    { name: "סרטים", show: "סרט הערב ב-4K" },
+    { name: "ילדים", show: "סדרות לכל המשפחה" },
+    { name: "דוקומנטרי", show: "טבע ומסעות" },
   ],
   en: [
-    { name: "Kan 11", show: "Evening News" },
-    { name: "Keshet 12", show: "Big Brother" },
-    { name: "Reshet 13", show: "News 13" },
-    { name: "Sport 5", show: "Israeli Premier League – Live" },
-    { name: "ONE", show: "EuroLeague" },
-    { name: "HOT Cinema", show: "Movie of the night" },
+    { name: "News", show: "Evening news – live" },
+    { name: "Sports", show: "Football – live" },
+    { name: "Reality", show: "Tonight's new episode" },
+    { name: "Movies", show: "Movie of the night in 4K" },
+    { name: "Kids", show: "Shows for the whole family" },
+    { name: "Documentary", show: "Nature & travel" },
   ],
 }
 
-// A small "TV screen" that flips through Israeli channels, so the hero feels live.
+// A small "TV screen" that flips through content categories, so the hero feels live.
 export default function LiveTv({ locale = "he" }: { locale?: Locale }) {
   const list = channels[locale]
   const [i, setI] = useState(0)

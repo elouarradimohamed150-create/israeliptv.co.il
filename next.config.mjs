@@ -5,8 +5,6 @@ const nextConfig = {
   },
   // Files read with fs at runtime must be bundled with the serverless functions
   outputFileTracingIncludes: {
-    '/api/channels': ['./data/channels.json'],
-    '/channels-list': ['./data/channels.json'],
     '/blog': ['./content/posts/**'],
     '/sitemap.xml': ['./content/posts/**'],
     '/llms.txt': ['./content/posts/**'],
@@ -15,6 +13,8 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/home', destination: '/', permanent: true },
+      // Channel list page was removed
+      { source: '/channels-list', destination: '/', permanent: true },
       { source: '/terms-and-conditions', destination: '/terms', permanent: true },
       { source: '/refund-and-cancellation-policy', destination: '/refund-policy', permanent: true },
       { source: '/installation-guide', destination: '/#installation', permanent: true },

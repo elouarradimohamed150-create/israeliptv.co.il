@@ -30,7 +30,7 @@ export default function OpengraphImage() {
           34,000+ live channels · 130,000+ movies & series · 4K
         </div>
         <div style={{ display: 'flex', gap: 24, marginTop: 56, fontSize: 32 }}>
-          {['Kan 11 · Keshet 12 · Reshet 13', 'From 55 ILS / month'].map((t) => (
+          {['Israeli & international TV', 'From 55 ILS / month'].map((t) => (
             <div
               key={t}
               style={{ padding: '14px 28px', borderRadius: 16, border: '2px solid #0038B8', color: '#0038B8' }}

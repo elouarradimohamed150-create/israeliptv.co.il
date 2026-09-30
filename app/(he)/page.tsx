@@ -2,7 +2,6 @@ import Navbar from '@/components/navbar'
 import Hero from '@/components/hero'
 import TrustMetrics from '@/components/trust-metrics'
 import KeyFacts from '@/components/key-facts'
-import ChannelSearch from '@/components/channel-search'
 import Pricing from '@/components/pricing'
 import InstallationTabs from '@/components/installation-tabs'
 import ComparisonTable from '@/components/comparison-table'
@@ -43,7 +42,6 @@ export default function Home() {
       <Hero />
       <KeyFacts />
       <TrustMetrics />
-      <ChannelSearch />
       <Pricing />
       <InstallationTabs />
       <ComparisonTable />

@@ -12,7 +12,6 @@ const copy = {
         links: [
           { label: "אודות Israel IPTV", href: "/about" },
           { label: "מחירים וחבילות", href: "/#pricing" },
-          { label: "רשימת ערוצים", href: "/channels-list" },
           { label: "מדריך התקנה", href: "/#installation" },
           { label: "תוכנית משווקים", href: "/#reseller" },
           { label: "בלוג ומדריכים", href: "/blog" },
@@ -41,7 +40,6 @@ const copy = {
         title: "Explore",
         links: [
           { label: "Pricing", href: "/en#pricing" },
-          { label: "Channel list", href: "/channels-list" },
           { label: "Setup guide", href: "/en#installation" },
           { label: "Reseller program", href: "/en#reseller" },
           { label: "Blog (Hebrew)", href: "/blog" },

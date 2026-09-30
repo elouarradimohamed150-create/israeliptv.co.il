@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // app/global-not-found.tsx: one branded 404 for both the Hebrew and English layouts
+  experimental: { globalNotFound: true },
   images: {
     unoptimized: true,
   },

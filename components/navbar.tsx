@@ -67,12 +67,15 @@ export default function Navbar({ locale = "he" }: { locale?: Locale }) {
       className={`glass fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${scrolled ? "shadow-[0_8px_30px_rgba(2,8,24,0.5)]" : ""}`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className={`flex items-center justify-between transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
-          <Link href={locale === "en" ? "/en" : "/"} className="group" aria-label="Israel IPTV">
+        {/* Logo | links centred | language + order */}
+        <div
+          className={`flex items-center justify-between transition-[height] duration-300 lg:grid lg:grid-cols-[1fr_auto_1fr] ${scrolled ? "h-14" : "h-16"}`}
+        >
+          <Link href={locale === "en" ? "/en" : "/"} className="group justify-self-start" aria-label="Israel IPTV">
             <Logo />
           </Link>
 
-          <div className="hidden items-center gap-6 md:flex">
+          <div className="hidden items-center gap-7 lg:flex">
             {t.links.map((link) => (
               <Link
                 key={link.label}
@@ -82,6 +85,9 @@ export default function Navbar({ locale = "he" }: { locale?: Locale }) {
                 {link.label}
               </Link>
             ))}
+          </div>
+
+          <div className="hidden items-center gap-3 justify-self-end lg:flex">
             {langSwitch}
             <Link
               href={waBuy()}
@@ -94,7 +100,7 @@ export default function Navbar({ locale = "he" }: { locale?: Locale }) {
           </div>
 
           <button
-            className="text-foreground md:hidden"
+            className="text-foreground lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={t.menu}
             aria-expanded={mobileMenuOpen}
@@ -110,7 +116,7 @@ export default function Navbar({ locale = "he" }: { locale?: Locale }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="glass border-t border-border/30 md:hidden"
+            className="glass border-t border-border/30 lg:hidden"
           >
             <div className="flex flex-col gap-1 px-4 py-4">
               {t.links.map((link) => (

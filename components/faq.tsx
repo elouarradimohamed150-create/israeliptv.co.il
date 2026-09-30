@@ -55,7 +55,7 @@ export default function FAQ({ locale = "he" }: { locale?: Locale }) {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="glass overflow-hidden rounded-xl border-none px-6 transition-shadow hover:shadow-[0_10px_30px_rgba(0,56,184,0.10)]"
+                className="glass overflow-hidden rounded-xl border-none px-6 transition-shadow hover:shadow-[0_10px_30px_rgba(2,8,24,0.45)]"
               >
                 <AccordionTrigger className="py-5 text-start text-sm font-medium text-foreground hover:no-underline sm:text-base">
                   {faq.question}

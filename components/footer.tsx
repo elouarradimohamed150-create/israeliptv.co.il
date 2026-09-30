@@ -68,13 +68,13 @@ const copy = {
 export default function Footer({ locale = "he" }: { locale?: Locale }) {
   const t = copy[locale]
   return (
-    <footer className="bg-primary px-4 pb-10 text-primary-foreground">
-      <div className="flag-stripe -mx-4 mb-12 !bg-[var(--flag-blue-dark)]" aria-hidden />
+    <footer className="bg-[var(--flag-blue-dark)] px-4 pb-10 text-white">
+      <div className="flag-stripe -mx-4 mb-12" aria-hidden />
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <span className="text-xl font-bold tracking-tight" dir="ltr">
-              <span className="text-white">Israel</span> <span className="text-[#B9CBF5]">IPTV</span>
+              <span className="text-white">Israel</span> <span className="text-primary">IPTV</span>
             </span>
             <p className="mt-3 text-sm leading-relaxed text-white/75">{t.about}</p>
           </div>

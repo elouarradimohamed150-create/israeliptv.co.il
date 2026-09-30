@@ -37,7 +37,7 @@ export default function LiveTv({ locale = "he" }: { locale?: Locale }) {
   const ch = list[i]
   return (
     <div className="glass mx-auto w-full max-w-md overflow-hidden rounded-2xl p-1.5" aria-hidden>
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0B1B3F] to-[#0038B8] px-6 py-5 text-white">
+      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#163B8C] to-[#2D63D4] px-6 py-5 text-white">
         <div className="mb-4 flex items-center justify-between text-xs font-semibold">
           <span className="flex items-center gap-2 rounded-full bg-white/10 px-2.5 py-1">
             <span className="live-dot h-2 w-2 rounded-full bg-red-600" />

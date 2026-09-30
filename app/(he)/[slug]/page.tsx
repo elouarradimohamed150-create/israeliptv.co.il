@@ -11,6 +11,7 @@ import { graph, organization, website, ORG_ID, WEBSITE_ID } from '@/lib/schema'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
+import OfferPopup from '@/components/offer-popup'
 import { Reveal } from '@/components/motion'
 
 interface Props {
@@ -217,6 +218,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <Footer />
       <WhatsAppButton />
+      <OfferPopup />
     </div>
   )
 }

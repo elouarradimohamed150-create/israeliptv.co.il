@@ -8,6 +8,7 @@ import { site } from '@/lib/site'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
+import OfferPopup from '@/components/offer-popup'
 import { Reveal, Stagger, StaggerItem } from '@/components/motion'
 
 const PER_PAGE = 12
@@ -111,6 +112,7 @@ export default async function BlogPage({ searchParams }: Props) {
 
       <Footer />
       <WhatsAppButton />
+      <OfferPopup />
     </div>
   )
 }

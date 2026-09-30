@@ -6,6 +6,7 @@ import { waContact } from '@/lib/whatsapp'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
+import OfferPopup from '@/components/offer-popup'
 import { Reveal } from '@/components/motion'
 
 export const metadata: Metadata = {
@@ -90,6 +91,7 @@ export default function AboutPage() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <OfferPopup />
     </div>
   )
 }

@@ -9,6 +9,7 @@ import ResellerCTA from '@/components/reseller-cta'
 import FAQ from '@/components/faq'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
+import OfferPopup from '@/components/offer-popup'
 import { site } from '@/lib/site'
 import { graph, organization, website, service, faqPage, homeLanguages, WEBSITE_ID, SERVICE_ID } from '@/lib/schema'
 
@@ -49,6 +50,7 @@ export default function Home() {
       <FAQ />
       <Footer />
       <WhatsAppButton />
+      <OfferPopup />
     </main>
   )
 }

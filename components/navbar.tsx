@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Globe } from "lucide-react"
 import Link from "next/link"
 import { waBuy } from "@/lib/whatsapp"
+import Logo from "@/components/logo"
 import type { Locale } from "@/lib/i18n"
 
 const copy = {
@@ -67,9 +68,8 @@ export default function Navbar({ locale = "he" }: { locale?: Locale }) {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
-          <Link href={locale === "en" ? "/en" : "/"} className="flex items-center gap-2 text-xl font-bold tracking-tight" dir="ltr">
-            <span className="text-foreground">Israel</span>
-            <span className="text-primary">IPTV</span>
+          <Link href={locale === "en" ? "/en" : "/"} className="group" aria-label="Israel IPTV">
+            <Logo />
           </Link>
 
           <div className="hidden items-center gap-6 md:flex">

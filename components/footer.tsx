@@ -2,6 +2,7 @@ import Link from "next/link"
 import { waContact, waBuy } from "@/lib/whatsapp"
 import { site } from "@/lib/site"
 import type { Locale } from "@/lib/i18n"
+import Logo from "@/components/logo"
 
 const copy = {
   he: {
@@ -71,9 +72,7 @@ export default function Footer({ locale = "he" }: { locale?: Locale }) {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <span className="text-xl font-bold tracking-tight" dir="ltr">
-              <span className="text-white">Israel</span> <span className="text-primary">IPTV</span>
-            </span>
+            <Logo size="lg" />
             <p className="mt-3 text-sm leading-relaxed text-white/75">{t.about}</p>
           </div>
 

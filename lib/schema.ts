@@ -12,7 +12,7 @@ export const organization = {
   '@id': ORG_ID,
   name: site.name,
   url: site.url,
-  logo: { '@type': 'ImageObject', url: `${site.url}/icon.svg` },
+  logo: { '@type': 'ImageObject', url: `${site.url}/apple-icon` , width: 180, height: 180 },
   description: `${site.name} is an IPTV subscription service for viewers in Israel and Israelis abroad: ${site.channels}+ live channels and ${site.vod}+ movies and series in up to 4K.`,
   areaServed: { '@type': 'Country', name: 'Israel' },
   knowsLanguage: ['he', 'en'],

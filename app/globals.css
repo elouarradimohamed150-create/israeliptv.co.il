@@ -252,12 +252,23 @@ html { scroll-behavior: smooth; }
   font-size: 1.0625rem;
 }
 
-/* ── Hide injected WP promo elements ── */
-.wp-content a.custom-button,
-.wp-content h4:has(a.custom-button),
-.wp-content strong:has(a.custom-button) {
-  display: none !important;
+/* ── In-article order button ── */
+.wp-content .wp-cta { text-align: center; margin: 1.75rem 0 2.25rem; }
+.wp-content .wp-cta a {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.8rem 2.25rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 22px rgba(91, 155, 255, 0.35);
+  transition: filter 0.2s, transform 0.2s;
 }
+.wp-content .wp-cta a:hover { color: var(--primary-foreground); filter: brightness(1.1); transform: translateY(-2px); }
+
+/* Headings jumped to from the table of contents stay clear of the fixed navbar */
+.wp-content h2[id] { scroll-margin-top: 6rem; }
 
 /* ── Headings ── */
 .wp-content h1,

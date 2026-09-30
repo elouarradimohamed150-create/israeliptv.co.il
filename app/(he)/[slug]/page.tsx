@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { he } from 'date-fns/locale'
-import { Clock, ArrowRight, CalendarDays } from 'lucide-react'
-import { getAllPosts, getPostBySlug, readingTime } from '@/lib/posts'
+import { Clock, ArrowRight, CalendarDays, RefreshCw, ListChecks, ListTree } from 'lucide-react'
+import { getAllPosts, getPostBySlug, readingTime, withHeadingIds, relatedPosts } from '@/lib/posts'
 import { waTrial } from '@/lib/whatsapp'
 import { site } from '@/lib/site'
 import { graph, organization, website, ORG_ID, WEBSITE_ID } from '@/lib/schema'
@@ -55,7 +55,9 @@ export default async function BlogPostPage({ params }: Props) {
   const minutes = readingTime(post.content)
   const category = post.categories[0]
   // Many posts repeat the title as an <h1> at the top of the body
-  const content = post.content.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>/, '')
+  const { html: content, toc } = withHeadingIds(post.content.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>/, ''))
+  const updated = post.modified.slice(0, 10) !== post.date.slice(0, 10)
+  const faq = post.faq ?? []
 
   const url = `${site.url}/${encodeURIComponent(post.slug)}`
   const articleJsonLd = graph(organization, website, {
@@ -71,7 +73,13 @@ export default async function BlogPostPage({ params }: Props) {
     isPartOf: { '@id': WEBSITE_ID },
     author: { '@id': ORG_ID },
     publisher: { '@id': ORG_ID },
-  }, {
+    ...(post.summary?.length ? { abstract: post.summary.join(' ') } : {}),
+  }, ...(faq.length ? [{
+    '@type': 'FAQPage',
+    '@id': `${url}#faq`,
+    inLanguage: 'he-IL',
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  }] : []), {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: site.name, item: site.url },
@@ -80,9 +88,7 @@ export default async function BlogPostPage({ params }: Props) {
     ],
   })
 
-  const related = getAllPosts()
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 3)
+  const related = relatedPosts(post)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -139,15 +145,75 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="mb-8 mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-b border-border pb-6 text-sm text-muted-foreground">
           <span className="flex items-center gap-1.5">
             <CalendarDays className="h-4 w-4 text-primary" />
-            {format(new Date(post.date), 'd בMMMM yyyy', { locale: he })}
+            פורסם: <time dateTime={post.date}>{format(new Date(post.date), 'd בMMMM yyyy', { locale: he })}</time>
           </span>
+          {updated && (
+            <span className="flex items-center gap-1.5">
+              <RefreshCw className="h-4 w-4 text-primary" />
+              עודכן: <time dateTime={post.modified}>{format(new Date(post.modified), 'd בMMMM yyyy', { locale: he })}</time>
+            </span>
+          )}
           <span className="flex items-center gap-1.5">
             <Clock className="h-4 w-4 text-primary" />
             {minutes} דק׳ קריאה
           </span>
         </div>
 
+        {/* ── In brief (answer-first summary for readers and AI search) ── */}
+        {post.summary && post.summary.length > 0 && (
+          <section aria-labelledby="in-brief" className="mb-8 scroll-mt-24 rounded-2xl border border-primary/30 bg-primary/10 p-6">
+            <h2 id="in-brief" className="mb-3 scroll-mt-24 flex items-center gap-2 text-lg font-bold text-foreground">
+              <ListChecks className="h-5 w-5 text-primary" /> בקצרה
+            </h2>
+            <ul className="space-y-2 text-[0.97rem] leading-relaxed text-foreground/90">
+              {post.summary.map((point) => (
+                <li key={point} className="flex gap-2.5">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* ── Table of contents ── */}
+        {toc.length > 2 && (
+          <details className="group mb-10 rounded-2xl border border-border bg-muted/60 p-5 [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer list-none items-center gap-2 font-bold text-foreground">
+              <ListTree className="h-5 w-5 text-primary" />
+              תוכן העניינים
+              <span className="ms-auto text-sm font-normal text-muted-foreground group-open:hidden">הצגה</span>
+              <span className="ms-auto hidden text-sm font-normal text-muted-foreground group-open:inline">הסתרה</span>
+            </summary>
+            <ol className="mt-4 list-decimal space-y-1.5 ps-6 text-sm text-muted-foreground marker:text-primary">
+              {toc.map((h) => (
+                <li key={h.id}>
+                  <a href={`#${h.id}`} className="hover:text-primary">{h.text}</a>
+                </li>
+              ))}
+            </ol>
+          </details>
+        )}
+
         <div className="wp-content" dangerouslySetInnerHTML={{ __html: content }} />
+
+        {/* ── FAQ (only when the article body doesn't already contain one) ── */}
+        {faq.length > 0 && !post.faqInContent && (
+          <section aria-labelledby="faq-title" className="mt-14 scroll-mt-24">
+            <h2 id="faq-title" className="mb-5 scroll-mt-24 text-2xl font-extrabold">שאלות נפוצות</h2>
+            <div className="space-y-3">
+              {faq.map((f) => (
+                <details key={f.q} className="group rounded-xl border border-border bg-muted/60 px-5 py-4 [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-foreground">
+                    <h3 className="text-base">{f.q}</h3>
+                    <span className="text-primary transition-transform group-open:rotate-45" aria-hidden>+</span>
+                  </summary>
+                  <p className="mt-3 leading-relaxed text-muted-foreground">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ── Brand box ── */}
         <aside className="mt-16 rounded-2xl border border-border bg-muted p-6 text-sm leading-relaxed text-muted-foreground">

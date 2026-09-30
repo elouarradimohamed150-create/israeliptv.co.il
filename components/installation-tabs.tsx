@@ -181,14 +181,19 @@ export default function InstallationTabs({ locale = "he" }: { locale?: Locale })
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-all ${
-                activeTab === tab.id
-                  ? "neon-glow bg-primary text-primary-foreground"
-                  : "glass text-muted-foreground hover:text-foreground"
+              className={`glass relative flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-colors ${
+                activeTab === tab.id ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <tab.icon className="h-4 w-4" />
-              {tab.label}
+              {activeTab === tab.id && (
+                <motion.span
+                  layoutId={`install-tab-${locale}`}
+                  className="neon-glow absolute inset-0 rounded-xl bg-primary"
+                  transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                />
+              )}
+              <tab.icon className="relative h-4 w-4" />
+              <span className="relative">{tab.label}</span>
             </button>
           ))}
         </div>
@@ -197,16 +202,23 @@ export default function InstallationTabs({ locale = "he" }: { locale?: Locale })
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            initial="hidden"
+            animate="show"
+            exit={{ opacity: 0, y: -12, transition: { duration: 0.2 } }}
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
             className="mt-10 grid gap-6 md:grid-cols-3"
           >
             {activeData.steps.map((step, index) => (
-              <div key={step.title} className="glass relative rounded-2xl p-6">
+              <motion.div
+                key={step.title}
+                variants={{
+                  hidden: { opacity: 0, y: 24, scale: 0.97 },
+                  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+                }}
+                className="glass lift group relative rounded-2xl p-6"
+              >
                 <div className="mb-4 flex items-center gap-3">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-sm font-bold text-primary">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-sm font-bold text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                     {index + 1}
                   </span>
                   <step.icon className="h-5 w-5 text-primary" />
@@ -217,7 +229,7 @@ export default function InstallationTabs({ locale = "he" }: { locale?: Locale })
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {step.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>

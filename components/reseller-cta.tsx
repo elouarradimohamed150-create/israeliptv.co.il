@@ -34,7 +34,7 @@ export default function ResellerCTA({ locale = "he" }: { locale?: Locale }) {
 
         <div className="relative z-10 flex flex-col items-center gap-6 text-center lg:flex-row lg:text-start">
           <div className="flex-1">
-            <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+            <div className="animate-float mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
               <Briefcase className="h-7 w-7 text-primary" />
             </div>
             <h2 className="text-balance text-3xl font-bold text-foreground sm:text-4xl">
@@ -49,10 +49,10 @@ export default function ResellerCTA({ locale = "he" }: { locale?: Locale }) {
             href={waReseller()}
             target="_blank"
             rel="noopener noreferrer"
-            className="neon-glow flex shrink-0 items-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:brightness-110"
+            className="neon-glow shine group flex shrink-0 items-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:brightness-110"
           >
             {t.cta}
-            <Arrow className="h-5 w-5" />
+            <Arrow className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
           </Link>
         </div>
       </motion.div>

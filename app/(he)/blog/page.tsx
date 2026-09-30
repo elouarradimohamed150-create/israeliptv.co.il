@@ -8,6 +8,7 @@ import { site } from '@/lib/site'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
+import { Reveal, Stagger, StaggerItem } from '@/components/motion'
 
 const PER_PAGE = 12
 
@@ -28,7 +29,7 @@ function PostCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/${post.slug}`}
-      className="glass group flex flex-col overflow-hidden rounded-2xl transition-all hover:border-primary/30"
+      className="glass lift group flex h-full flex-col overflow-hidden rounded-2xl hover:border-primary/30"
     >
       {post.featuredImage && (
         <div className="relative h-44 w-full overflow-hidden">
@@ -68,7 +69,7 @@ export default async function BlogPage({ searchParams }: Props) {
       <Navbar />
 
       <main className="mx-auto max-w-7xl px-4 pb-24 pt-28 sm:px-6 lg:px-8">
-        <div className="mb-14 text-center">
+        <Reveal className="mb-14 text-center">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-xs font-bold text-primary">
             <Rss className="h-3 w-3" /> {posts.length} מאמרים
           </span>
@@ -76,16 +77,18 @@ export default async function BlogPage({ searchParams }: Props) {
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             מדריכי התקנה צעד אחר צעד, השוואת נגנים ותשובות לשאלות שהלקוחות שלנו שואלים הכי הרבה.
           </p>
-        </div>
+        </Reveal>
 
         {pagePosts.length === 0 ? (
           <p className="text-center text-muted-foreground">אין מאמרים כרגע. חזרו בקרוב.</p>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" gap={0.07}>
             {pagePosts.map((post) => (
-              <PostCard key={post.slug} post={post} />
+              <StaggerItem key={post.slug}>
+                <PostCard post={post} />
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         )}
 
         {totalPages > 1 && (

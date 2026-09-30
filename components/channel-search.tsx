@@ -63,22 +63,24 @@ export default function ChannelSearch({ locale = "he" }: { locale?: Locale }) {
         </motion.div>
       </div>
 
-      {/* Marquee */}
-      <div className="relative mt-12 overflow-hidden" dir="ltr">
+      {/* Marquee: two rows moving in opposite directions */}
+      <div className="marquee-pause relative mt-12 flex flex-col gap-4 overflow-hidden" dir="ltr">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
 
-        <div className="flex w-max animate-marquee gap-8">
-          {[...channels[locale], ...channels[locale]].map((channel, index) => (
-            <div
-              key={`${channel}-${index}`}
-              className="glass flex shrink-0 items-center gap-2 rounded-xl px-6 py-3"
-            >
-              <div className="h-3 w-3 rounded-full bg-primary/50" />
-              <span className="whitespace-nowrap text-sm font-medium text-muted-foreground">{channel}</span>
-            </div>
-          ))}
-        </div>
+        {[channels[locale], [...channels[locale]].reverse()].map((row, r) => (
+          <div key={r} className={`flex w-max gap-6 ${r === 0 ? "animate-marquee" : "animate-marquee-reverse"}`}>
+            {[...row, ...row].map((channel, index) => (
+              <div
+                key={`${channel}-${index}`}
+                className="glass flex shrink-0 items-center gap-2 rounded-xl px-6 py-3 transition-colors hover:border-primary/50"
+              >
+                <div className="h-2.5 w-2.5 rounded-full bg-primary/60" />
+                <span className="whitespace-nowrap text-sm font-medium text-muted-foreground">{channel}</span>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     </section>
   )

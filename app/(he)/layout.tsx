@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Heebo, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { site } from '@/lib/site'
+import { MotionProvider, ScrollProgress } from '@/components/motion'
 import '../globals.css'
 
 const heebo = Heebo({ subsets: ['hebrew', 'latin'], variable: '--font-heebo' })
@@ -40,7 +41,10 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl" className={`${heebo.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased text-right">
-        {children}
+        <MotionProvider>
+          <ScrollProgress />
+          {children}
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

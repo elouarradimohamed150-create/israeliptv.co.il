@@ -2,6 +2,7 @@ import type { Viewport } from 'next'
 import { Heebo, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { site } from '@/lib/site'
+import { MotionProvider, ScrollProgress } from '@/components/motion'
 import '../globals.css'
 
 const heebo = Heebo({ subsets: ['hebrew', 'latin'], variable: '--font-heebo' })
@@ -23,7 +24,10 @@ export default function EnglishLayout({ children }: Readonly<{ children: React.R
   return (
     <html lang="en" dir="ltr" className={`${heebo.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">
-        {children}
+        <MotionProvider>
+          <ScrollProgress />
+          {children}
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

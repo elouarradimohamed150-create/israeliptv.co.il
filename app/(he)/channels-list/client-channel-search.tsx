@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Search, Globe, Loader2 } from 'lucide-react'
+import { motion } from 'framer-motion'
 import type { Channel } from '@/lib/channels'
 
 interface Page {
@@ -93,10 +94,13 @@ export default function ClientChannelSearch({ initial }: { initial: Page }) {
       </p>
 
       <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        {channels.map((channel) => (
-          <div
+        {channels.map((channel, n) => (
+          <motion.div
             key={channel.id}
-            className="group rounded-3xl border border-border bg-muted p-4 transition-all duration-300 hover:border-primary hover:shadow-[0_8px_24px_rgba(0,56,184,0.12)]"
+            initial={{ opacity: 0, y: 16, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.35, delay: (n % 60) * 0.015 }}
+            className="lift group rounded-3xl border border-border bg-muted p-4 hover:border-primary"
           >
             <div className="relative mb-4 flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-border bg-background">
               <ChannelLogo channel={channel} />
@@ -108,7 +112,7 @@ export default function ClientChannelSearch({ initial }: { initial: Page }) {
               <Globe className="h-3 w-3 shrink-0" />
               <span className="truncate">{channel.category || 'בינלאומי'}</span>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
@@ -117,7 +121,7 @@ export default function ClientChannelSearch({ initial }: { initial: Page }) {
           <button
             onClick={() => load(query, channels.length)}
             disabled={loading}
-            className="rounded-full bg-primary px-12 py-5 font-black text-primary-foreground shadow-xl shadow-primary/10 transition-all hover:scale-105 disabled:opacity-60"
+            className="shine rounded-full bg-primary px-12 py-5 font-black text-primary-foreground shadow-xl shadow-primary/10 transition-all hover:scale-105 disabled:opacity-60"
           >
             {loading ? 'טוען...' : 'טענו ערוצים נוספים'}
           </button>

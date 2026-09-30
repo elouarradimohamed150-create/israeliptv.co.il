@@ -6,6 +6,7 @@ import { waContact } from '@/lib/whatsapp'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
+import { Reveal } from '@/components/motion'
 
 export const metadata: Metadata = {
   title: { absolute: `אודות Israel IPTV – מי אנחנו ואיך השירות עובד` },
@@ -63,16 +64,18 @@ export default function AboutPage() {
         </p>
 
         <div className="mt-12 space-y-10">
-          {sections.map((s) => (
-            <section key={s.title}>
-              <h2 className="mb-3 text-2xl font-bold">{s.title}</h2>
-              <p className="leading-relaxed text-muted-foreground">{s.body}</p>
-            </section>
+          {sections.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.05}>
+              <section>
+                <h2 className="mb-3 text-2xl font-bold">{s.title}</h2>
+                <p className="leading-relaxed text-muted-foreground">{s.body}</p>
+              </section>
+            </Reveal>
           ))}
         </div>
 
         <div className="mt-14 flex flex-wrap gap-4">
-          <Link href="/#pricing" className="neon-glow rounded-xl bg-primary px-8 py-3.5 font-bold text-primary-foreground">
+          <Link href="/#pricing" className="neon-glow shine rounded-xl bg-primary px-8 py-3.5 font-bold text-primary-foreground">
             למחירי Israel IPTV
           </Link>
           <Link

@@ -68,9 +68,9 @@ export default function TrustMetrics({ locale = "he" }: { locale?: Locale }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="glass flex flex-col items-center gap-3 rounded-2xl p-6 text-center"
+            className="glass lift group flex flex-col items-center gap-3 rounded-2xl p-6 text-center"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:[&>svg]:text-white">
               <metric.icon className="h-6 w-6 text-primary" />
             </div>
             <AnimatedCounter

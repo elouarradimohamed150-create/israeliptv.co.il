@@ -6,6 +6,7 @@ import Link from "next/link"
 import { waBuy, waTrial } from "@/lib/whatsapp"
 import { site } from "@/lib/site"
 import type { Locale } from "@/lib/i18n"
+import LiveTv from "@/components/live-tv"
 
 const copy = {
   he: {
@@ -41,15 +42,15 @@ export default function Hero({ locale = "he" }: { locale?: Locale }) {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-24 pt-40"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-28 pt-40"
     >
       {/* Flag stripes */}
-      <div className="flag-stripe pointer-events-none absolute inset-x-0 top-24" aria-hidden />
-      <div className="flag-stripe pointer-events-none absolute inset-x-0 bottom-10" aria-hidden />
+      <div className="flag-stripe flag-stripe-animated pointer-events-none absolute inset-x-0 top-24" aria-hidden />
+      <div className="flag-stripe flag-stripe-animated pointer-events-none absolute inset-x-0 bottom-10" aria-hidden />
 
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[120px]" />
-        <div className="absolute bottom-0 left-0 h-[400px] w-[400px] -translate-x-1/4 translate-y-1/4 rounded-full bg-primary/5 blur-[100px]" />
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="animate-drift absolute left-[10%] top-[15%] h-[420px] w-[420px] rounded-full bg-primary/10 blur-[110px]" />
+        <div className="animate-drift-slow absolute bottom-[10%] right-[5%] h-[380px] w-[380px] rounded-full bg-[#3B6FE0]/10 blur-[100px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl text-center">
@@ -71,7 +72,18 @@ export default function Hero({ locale = "he" }: { locale?: Locale }) {
         >
           <span dir="ltr" className="text-primary">Israel IPTV</span>
           <br />
-          {t.h1}
+          {t.h1.split(" ").map((word, i) => (
+            <motion.span
+              key={i}
+              className="inline-block"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {word}
+              {"\u00A0"}
+            </motion.span>
+          ))}
         </motion.h1>
 
         <motion.p
@@ -93,7 +105,7 @@ export default function Hero({ locale = "he" }: { locale?: Locale }) {
             href={waBuy()}
             target="_blank"
             rel="noopener noreferrer"
-            className="neon-glow flex items-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:brightness-110"
+            className="neon-glow shine flex items-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:brightness-110"
           >
             <ShoppingCart className="h-5 w-5" />
             {t.order}
@@ -111,15 +123,25 @@ export default function Hero({ locale = "he" }: { locale?: Locale }) {
         </motion.div>
 
         <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-12"
+        >
+          <LiveTv locale={locale} />
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground"
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground"
         >
-          {["Samsung / LG", "Android TV", "Fire Stick", "iPhone / iPad", "MAG", "Windows / Mac"].map((device) => (
+          {["Samsung / LG", "Android TV", "Fire Stick", "iPhone / iPad", "MAG", "Windows / Mac"].map((device, i) => (
             <span
               key={device}
-              className="flex items-center gap-2 rounded-full border border-border/50 px-4 py-2"
+              style={{ animationDelay: `${i * 0.4}s` }}
+              className="animate-float flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2"
             >
               <span className="h-2 w-2 rounded-full bg-primary/60" />
               {device}

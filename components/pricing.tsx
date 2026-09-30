@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Check, ShieldCheck, Zap, MessageCircle, Lock } from "lucide-react"
 import Link from "next/link"
 import { plans, planFeatures, planFeaturesEn, type Devices } from "@/lib/site"
@@ -88,13 +88,18 @@ export default function Pricing({ locale = "he" }: { locale?: Locale }) {
                 role="radio"
                 aria-checked={devices === value}
                 onClick={() => setDevices(value)}
-                className={`rounded-lg px-5 py-2.5 text-sm font-semibold transition-all ${
-                  devices === value
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                className={`relative rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors ${
+                  devices === value ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {t.devices[value - 1]}
+                {devices === value && (
+                  <motion.span
+                    layoutId={`device-pill-${locale}`}
+                    className="absolute inset-0 rounded-lg bg-primary"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  />
+                )}
+                <span className="relative">{t.devices[value - 1]}</span>
               </button>
             ))}
           </div>
@@ -114,13 +119,15 @@ export default function Pricing({ locale = "he" }: { locale?: Locale }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className={`glass relative flex flex-col rounded-2xl p-6 ${
+                className={`glass lift relative flex flex-col rounded-2xl p-6 ${
                   plan.popular ? "outline-2 outline-primary" : ""
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[11px] font-bold text-primary-foreground">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <div className="animate-float rounded-full bg-primary px-3 py-1 text-[11px] font-bold text-primary-foreground shadow-md">
                     {t.popular}
+                    </div>
                   </div>
                 )}
 
@@ -133,8 +140,19 @@ export default function Pricing({ locale = "he" }: { locale?: Locale }) {
                   )}
                 </div>
 
-                <div className="mb-1">
-                  <span className="text-4xl font-bold text-foreground">₪{price}</span>
+                <div className="relative mb-1 h-10 overflow-hidden">
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.span
+                      key={price}
+                      initial={{ y: 28, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -28, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute inset-x-0 text-4xl font-bold text-foreground"
+                    >
+                      ₪{price}
+                    </motion.span>
+                  </AnimatePresence>
                 </div>
                 <p className="mb-6 h-5 text-sm text-muted-foreground">
                   {perMonth ? t.perMonth(perMonth) : plan.months === null ? t.oneDay : t.oneOff}
@@ -159,7 +177,7 @@ export default function Pricing({ locale = "he" }: { locale?: Locale }) {
                   rel="noopener noreferrer"
                   className={`mt-auto rounded-xl py-3 text-center text-sm font-semibold transition-all ${
                     plan.popular
-                      ? "neon-glow bg-primary text-primary-foreground hover:brightness-110"
+                      ? "neon-glow shine bg-primary text-primary-foreground hover:brightness-110"
                       : "border border-border text-foreground hover:border-primary/50 hover:bg-primary/5"
                   }`}
                 >

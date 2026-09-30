@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useMotionValueEvent, useScroll } from "framer-motion"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Globe } from "lucide-react"
 import Link from "next/link"
@@ -42,6 +43,9 @@ const copy = {
 
 export default function Navbar({ locale = "he" }: { locale?: Locale }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24))
   const t = copy[locale]
 
   const langSwitch = (
@@ -61,10 +65,10 @@ export default function Navbar({ locale = "he" }: { locale?: Locale }) {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 glass"
+      className={`glass fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${scrolled ? "shadow-[0_8px_30px_rgba(0,56,184,0.12)]" : ""}`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className={`flex items-center justify-between transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
           <Link href={locale === "en" ? "/en" : "/"} className="flex items-center gap-2 text-xl font-bold tracking-tight" dir="ltr">
             <span className="text-foreground">Israel</span>
             <span className="text-primary">IPTV</span>
@@ -75,7 +79,7 @@ export default function Navbar({ locale = "he" }: { locale?: Locale }) {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="nav-link text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
               </Link>
@@ -85,7 +89,7 @@ export default function Navbar({ locale = "he" }: { locale?: Locale }) {
               href={waBuy()}
               target="_blank"
               rel="noopener noreferrer"
-              className="neon-glow rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110"
+              className="neon-glow shine rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110"
             >
               {t.order}
             </Link>

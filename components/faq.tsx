@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion"
 import { faqs, faqsEn } from "@/lib/faq"
 import type { Locale } from "@/lib/i18n"
+import { StaggerItem } from "@/components/motion"
 
 const copy = {
   he: {
@@ -42,18 +43,19 @@ export default function FAQ({ locale = "he" }: { locale?: Locale }) {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
           className="mt-10"
         >
           <Accordion type="single" collapsible className="flex flex-col gap-3">
             {items.map((faq, index) => (
+              <StaggerItem key={index}>
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="glass overflow-hidden rounded-xl border-none px-6"
+                className="glass overflow-hidden rounded-xl border-none px-6 transition-shadow hover:shadow-[0_10px_30px_rgba(0,56,184,0.10)]"
               >
                 <AccordionTrigger className="py-5 text-start text-sm font-medium text-foreground hover:no-underline sm:text-base">
                   {faq.question}
@@ -62,6 +64,7 @@ export default function FAQ({ locale = "he" }: { locale?: Locale }) {
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
+              </StaggerItem>
             ))}
           </Accordion>
         </motion.div>

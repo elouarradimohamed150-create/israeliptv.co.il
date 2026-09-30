@@ -1,5 +1,6 @@
 import { site, plans } from '@/lib/site'
 import type { Locale } from '@/lib/i18n'
+import { Reveal, Stagger, StaggerItem } from '@/components/motion'
 
 // Plain server-rendered facts block: short, quotable answers for search engines and AI assistants.
 export default function KeyFacts({ locale = 'he' }: { locale?: Locale }) {
@@ -64,7 +65,7 @@ export default function KeyFacts({ locale = 'he' }: { locale?: Locale }) {
   return (
     <section id="about-israel-iptv" className="relative px-4 py-16">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-start">
-        <div>
+        <Reveal>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
             {t.title} <span dir="ltr" className="text-primary">Israel IPTV</span>?
           </h2>
@@ -73,25 +74,25 @@ export default function KeyFacts({ locale = 'he' }: { locale?: Locale }) {
           <p className="mt-6 text-xs text-muted-foreground">
             {t.updatedLabel}: <time dateTime={site.lastUpdated}>{updated}</time>
           </p>
-        </div>
+        </Reveal>
 
-        <div className="glass overflow-hidden rounded-2xl">
+        <Reveal delay={0.15} className="glass lift overflow-hidden rounded-2xl">
           <table className="w-full text-sm">
             <caption className="border-b border-border/30 px-5 py-3 text-start font-semibold text-foreground">
               {t.caption}
             </caption>
-            <tbody>
+            <Stagger as="tbody" gap={0.06}>
               {t.facts.map(([k, v]) => (
-                <tr key={k} className="border-b border-border/10 last:border-0">
+                <StaggerItem as="tr" key={k} className="border-b border-border/10 last:border-0">
                   <th scope="row" className="w-36 px-5 py-3 text-start align-top font-medium text-muted-foreground">
                     {k}
                   </th>
                   <td className="px-5 py-3 text-foreground">{v}</td>
-                </tr>
+                </StaggerItem>
               ))}
-            </tbody>
+            </Stagger>
           </table>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

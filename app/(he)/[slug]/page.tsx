@@ -11,6 +11,7 @@ import { graph, organization, website, ORG_ID, WEBSITE_ID } from '@/lib/schema'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
+import { Reveal } from '@/components/motion'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -163,7 +164,7 @@ export default async function BlogPostPage({ params }: Props) {
         </aside>
 
         {/* ── CTA ── */}
-        <div className="mt-8 overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-secondary to-background">
+        <Reveal className="mt-8 overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-secondary to-background">
           <div className="p-8 text-center sm:p-10">
             <span className="mb-3 inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
               רוצים לנסות?
@@ -178,12 +179,12 @@ export default async function BlogPostPage({ params }: Props) {
               href={waTrial()}
               target="_blank"
               rel="noopener noreferrer"
-              className="neon-glow inline-block rounded-xl bg-primary px-10 py-3.5 font-bold text-primary-foreground transition-all hover:brightness-110"
+              className="neon-glow shine inline-block rounded-xl bg-primary px-10 py-3.5 font-bold text-primary-foreground transition-all hover:brightness-110"
             >
               הזמינו בוואטסאפ
             </Link>
           </div>
-        </div>
+        </Reveal>
 
         {/* ── Related ── */}
         {related.length > 0 && (
@@ -194,7 +195,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <Link
                   key={p.slug}
                   href={`/${p.slug}`}
-                  className="glass rounded-xl p-4 text-sm font-semibold leading-snug transition-colors hover:text-primary"
+                  className="glass lift rounded-xl p-4 text-sm font-semibold leading-snug transition-colors hover:text-primary"
                 >
                   {p.title}
                 </Link>

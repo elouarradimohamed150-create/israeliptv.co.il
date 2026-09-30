@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Check, X } from "lucide-react"
 import { site } from "@/lib/site"
 import type { Locale } from "@/lib/i18n"
+import { Stagger, StaggerItem } from "@/components/motion"
 
 type Cell = boolean | string
 
@@ -88,9 +89,10 @@ export default function ComparisonTable({ locale = "he" }: { locale?: Locale }) 
                   <th className="px-6 py-4 text-center text-sm font-medium text-muted-foreground">{t.cable}</th>
                 </tr>
               </thead>
-              <tbody>
+              <Stagger as="tbody" gap={0.05}>
                 {rows[locale].map((row, index) => (
-                  <tr
+                  <StaggerItem
+                    as="tr"
                     key={row.feature}
                     className={`border-b border-border/10 ${index % 2 === 0 ? "bg-secondary/20" : ""}`}
                   >
@@ -101,9 +103,9 @@ export default function ComparisonTable({ locale = "he" }: { locale?: Locale }) 
                     <td className="px-6 py-3.5 text-center">
                       <CellView value={row.cable} />
                     </td>
-                  </tr>
+                  </StaggerItem>
                 ))}
-              </tbody>
+              </Stagger>
             </table>
           </div>
         </motion.div>

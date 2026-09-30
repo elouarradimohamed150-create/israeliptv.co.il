@@ -20,7 +20,7 @@ const copy = {
     oneDay: "גישה מלאה ל-24 שעות",
     oneOff: "חיוב חד-פעמי",
     allContent: "כל הערוצים, ה-VOD ו-4K",
-    order: "הזמינו בוואטסאפ",
+    order: "הזמינו עכשיו",
     included: "כלול בכל החבילות",
     more: ["צריכים יותר מ-3 מכשירים?", "דברו איתנו", "ונבנה לכם חבילה."],
     badges: [
@@ -41,7 +41,7 @@ const copy = {
     oneDay: "Full access for 24 hours",
     oneOff: "One-time payment",
     allContent: "All channels, VOD and 4K",
-    order: "Order on WhatsApp",
+    order: "Order now",
     included: "Included in every plan",
     more: ["Need more than 3 devices?", "Talk to us", "and we will build a plan for you."],
     badges: [

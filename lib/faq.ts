@@ -69,7 +69,7 @@ export const faqsEn = [
   {
     question: 'How do I order and pay?',
     answer:
-      'Click "Order on WhatsApp" next to the plan you want. A WhatsApp chat opens with your plan already filled in. Our team sends a secure payment link (PayPal or credit card), and your login details arrive right after payment is confirmed.',
+      'Click "Order now" next to the plan you want. A WhatsApp chat opens with your plan already filled in. Our team sends a secure payment link (PayPal or credit card), and your login details arrive right after payment is confirmed.',
   },
   {
     question: 'How fast is my subscription activated?',

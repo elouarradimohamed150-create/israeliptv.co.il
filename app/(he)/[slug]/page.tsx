@@ -182,7 +182,7 @@ export default async function BlogPostPage({ params }: Props) {
               rel="noopener noreferrer"
               className="neon-glow shine inline-block rounded-xl bg-primary px-10 py-3.5 font-bold text-primary-foreground transition-all hover:brightness-110"
             >
-              הזמינו בוואטסאפ
+              הזמינו עכשיו
             </Link>
           </div>
         </Reveal>

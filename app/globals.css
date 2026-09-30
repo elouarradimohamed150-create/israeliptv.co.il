@@ -7,24 +7,24 @@
   /* Israel flag palette: white field, flag blue (#0038B8), deep navy text */
   --flag-blue: #0038B8;
   --flag-blue-dark: #002A8A;
-  --background: #FFFFFF;
+  --background: #EAF0F9;
   --foreground: #0B1B3F;
-  --card: #FFFFFF;
+  --card: #F7F9FD;
   --card-foreground: #0B1B3F;
-  --popover: #FFFFFF;
+  --popover: #F7F9FD;
   --popover-foreground: #0B1B3F;
   --primary: #0038B8;
   --primary-foreground: #FFFFFF;
-  --secondary: #EAF0FF;
+  --secondary: #DCE6F7;
   --secondary-foreground: #0038B8;
-  --muted: #F4F7FD;
+  --muted: #E1E9F6;
   --muted-foreground: #475673;
-  --accent: #EAF0FF;
+  --accent: #DCE6F7;
   --accent-foreground: #0038B8;
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
-  --border: #D5DFF3;
-  --input: #D5DFF3;
+  --border: #C9D6EE;
+  --input: #C9D6EE;
   --ring: #0038B8;
   --chart-1: #0038B8;
   --chart-2: #3B6FE0;
@@ -32,13 +32,13 @@
   --chart-4: #002A8A;
   --chart-5: #B9CBF5;
   --radius: 0.75rem;
-  --sidebar: #FFFFFF;
+  --sidebar: #EAF0F9;
   --sidebar-foreground: #0B1B3F;
   --sidebar-primary: #0038B8;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #EAF0FF;
   --sidebar-accent-foreground: #0038B8;
-  --sidebar-border: #D5DFF3;
+  --sidebar-border: #C9D6EE;
   --sidebar-ring: #0038B8;
 }
 
@@ -104,7 +104,7 @@
 
 /* Card surface (kept the old "glass" name so markup didn't change) */
 .glass {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(247, 249, 253, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
@@ -376,7 +376,7 @@ html { scroll-behavior: smooth; }
   color: #475673;
   vertical-align: top;
 }
-.wp-content tr:nth-child(even) td { background: #F8FAFF; }
+.wp-content tr:nth-child(even) td { background: #F1F5FC; }
 
 /* ── Images ── */
 .wp-content figure { margin: 2.5rem 0; }
@@ -397,7 +397,7 @@ html { scroll-behavior: smooth; }
 
 /* ── Table of contents nav ── */
 .wp-content nav {
-  background: #F4F7FD;
+  background: #E1E9F6;
   border: 1px solid #D5DFF3;
   border-inline-start: 4px solid #0038B8;
   border-start-end-radius: 0.875rem;
@@ -446,7 +446,7 @@ html { scroll-behavior: smooth; }
 }
 
 ::-webkit-scrollbar-track {
-  background: #F4F7FD;
+  background: #E1E9F6;
 }
 
 ::-webkit-scrollbar-thumb {

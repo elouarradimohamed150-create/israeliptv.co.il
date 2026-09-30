@@ -28,7 +28,7 @@ function PostCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/${post.slug}`}
-      className="glass group flex flex-col overflow-hidden rounded-2xl transition-all hover:border-[#10B981]/30"
+      className="glass group flex flex-col overflow-hidden rounded-2xl transition-all hover:border-primary/30"
     >
       {post.featuredImage && (
         <div className="relative h-44 w-full overflow-hidden">
@@ -42,11 +42,11 @@ function PostCard({ post }: { post: Post }) {
         </div>
       )}
       <div className="flex flex-1 flex-col p-6">
-        <h2 className="mb-3 flex-1 text-lg font-bold leading-snug transition-colors group-hover:text-[#10B981]">
+        <h2 className="mb-3 flex-1 text-lg font-bold leading-snug transition-colors group-hover:text-primary">
           {post.title}
         </h2>
-        <p className="mb-5 line-clamp-2 text-sm text-[#94A3B8]">{post.excerpt}</p>
-        <div className="flex items-center justify-between text-xs text-[#94A3B8]">
+        <p className="mb-5 line-clamp-2 text-sm text-muted-foreground">{post.excerpt}</p>
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
           <span>{format(new Date(post.date), 'd בMMM yyyy', { locale: he })}</span>
           <span className="flex items-center gap-1">
             <Clock className="h-3 w-3" /> {readingTime(post.content)} דק׳
@@ -64,22 +64,22 @@ export default async function BlogPage({ searchParams }: Props) {
   const pagePosts = posts.slice((page - 1) * PER_PAGE, page * PER_PAGE)
 
   return (
-    <div className="min-h-screen bg-[#0B0F13] text-[#F8FAFC]">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       <main className="mx-auto max-w-7xl px-4 pb-24 pt-28 sm:px-6 lg:px-8">
         <div className="mb-14 text-center">
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#30363D] bg-[#151B23] px-4 py-1.5 text-xs font-bold text-[#10B981]">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-xs font-bold text-primary">
             <Rss className="h-3 w-3" /> {posts.length} מאמרים
           </span>
           <h1 className="mt-3 text-4xl font-black tracking-tight md:text-6xl">מרכז הידע של {site.name}</h1>
-          <p className="mx-auto mt-4 max-w-xl text-[#94A3B8]">
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             מדריכי התקנה צעד אחר צעד, השוואת נגנים ותשובות לשאלות שהלקוחות שלנו שואלים הכי הרבה.
           </p>
         </div>
 
         {pagePosts.length === 0 ? (
-          <p className="text-center text-[#94A3B8]">אין מאמרים כרגע. חזרו בקרוב.</p>
+          <p className="text-center text-muted-foreground">אין מאמרים כרגע. חזרו בקרוב.</p>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {pagePosts.map((post) => (
@@ -96,7 +96,7 @@ export default async function BlogPage({ searchParams }: Props) {
                 href={n === 1 ? '/blog' : `/blog?page=${n}`}
                 aria-current={n === page ? 'page' : undefined}
                 className={`flex h-10 w-10 items-center justify-center rounded-lg text-sm font-semibold transition-colors ${
-                  n === page ? 'bg-[#10B981] text-[#0B0F13]' : 'glass text-[#94A3B8] hover:text-[#F8FAFC]'
+                  n === page ? 'bg-primary text-primary-foreground' : 'glass text-muted-foreground hover:text-foreground'
                 }`}
               >
                 {n}

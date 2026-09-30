@@ -41,8 +41,12 @@ export default function Hero({ locale = "he" }: { locale?: Locale }) {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pt-16"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-24 pt-40"
     >
+      {/* Flag stripes */}
+      <div className="flag-stripe pointer-events-none absolute inset-x-0 top-24" aria-hidden />
+      <div className="flag-stripe pointer-events-none absolute inset-x-0 bottom-10" aria-hidden />
+
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[120px]" />
         <div className="absolute bottom-0 left-0 h-[400px] w-[400px] -translate-x-1/4 translate-y-1/4 rounded-full bg-primary/5 blur-[100px]" />

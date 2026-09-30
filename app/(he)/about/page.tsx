@@ -47,18 +47,18 @@ const sections = [
 export default function AboutPage() {
   const from = Math.min(...plans.filter((p) => p.months).map((p) => p.prices[1]))
   return (
-    <div className="min-h-screen bg-[#0B0F13] text-[#F8FAFC]">
+    <div className="min-h-screen bg-background text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Navbar />
       <main className="mx-auto max-w-3xl px-4 pb-24 pt-28 sm:px-6">
-        <nav aria-label="breadcrumb" className="mb-6 text-sm text-[#94A3B8]">
-          <Link href="/" className="hover:text-[#10B981]">Israel IPTV</Link> <span aria-hidden>›</span> אודות
+        <nav aria-label="breadcrumb" className="mb-6 text-sm text-muted-foreground">
+          <Link href="/" className="hover:text-primary">Israel IPTV</Link> <span aria-hidden>›</span> אודות
         </nav>
         <h1 className="text-4xl font-black md:text-5xl">
-          אודות <span dir="ltr" className="text-[#10B981]">Israel IPTV</span>
+          אודות <span dir="ltr" className="text-primary">Israel IPTV</span>
         </h1>
-        <p className="mt-5 text-lg leading-relaxed text-[#cbd5e1]">
-          <strong className="text-white">Israel IPTV</strong> ({site.domain}) הוא שירות IPTV שמביא את הטלוויזיה הישראלית
+        <p className="mt-5 text-lg leading-relaxed text-foreground/80">
+          <strong className="text-foreground">Israel IPTV</strong> ({site.domain}) הוא שירות IPTV שמביא את הטלוויזיה הישראלית
           והבינלאומית לכל מכשיר, במחיר שמתחיל ב-₪{from} לחודש.
         </p>
 
@@ -66,20 +66,20 @@ export default function AboutPage() {
           {sections.map((s) => (
             <section key={s.title}>
               <h2 className="mb-3 text-2xl font-bold">{s.title}</h2>
-              <p className="leading-relaxed text-[#94A3B8]">{s.body}</p>
+              <p className="leading-relaxed text-muted-foreground">{s.body}</p>
             </section>
           ))}
         </div>
 
         <div className="mt-14 flex flex-wrap gap-4">
-          <Link href="/#pricing" className="neon-glow rounded-xl bg-[#10B981] px-8 py-3.5 font-bold text-[#0B0F13]">
+          <Link href="/#pricing" className="neon-glow rounded-xl bg-primary px-8 py-3.5 font-bold text-primary-foreground">
             למחירי Israel IPTV
           </Link>
           <Link
             href={waContact}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-xl border border-[#30363D] px-8 py-3.5 font-bold hover:border-[#10B981]"
+            className="rounded-xl border border-border px-8 py-3.5 font-bold hover:border-primary"
           >
             דברו איתנו בוואטסאפ
           </Link>

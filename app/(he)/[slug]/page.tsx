@@ -83,7 +83,7 @@ export default async function BlogPostPage({ params }: Props) {
     .slice(0, 3)
 
   return (
-    <div className="min-h-screen bg-[#0B0F13] text-[#F8FAFC]">
+    <div className="min-h-screen bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -102,45 +102,45 @@ export default async function BlogPostPage({ params }: Props) {
                 className="absolute inset-0 h-full w-full object-cover"
                 fetchPriority="high"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F13] via-[#0B0F13]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background from-15% via-background/85 via-45% to-background/20" />
             </div>
             <div className="absolute bottom-0 left-0 right-0">
               <div className="mx-auto max-w-3xl px-4 pb-10 sm:px-6">
                 {category && (
-                  <span className="mb-4 inline-block rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
+                  <span className="mb-4 inline-block rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                     {category.name}
                   </span>
                 )}
-                <h1 className="text-3xl font-black leading-tight text-white md:text-5xl">{post.title}</h1>
+                <h1 className="text-3xl font-black leading-tight text-foreground md:text-5xl">{post.title}</h1>
               </div>
             </div>
           </>
         ) : (
           <div className="mx-auto max-w-3xl px-4 pb-6 pt-16 sm:px-6">
             {category && (
-              <span className="mb-4 inline-block rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
+              <span className="mb-4 inline-block rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                 {category.name}
               </span>
             )}
-            <h1 className="text-3xl font-black leading-tight text-white md:text-5xl">{post.title}</h1>
+            <h1 className="text-3xl font-black leading-tight text-foreground md:text-5xl">{post.title}</h1>
           </div>
         )}
       </div>
 
       {/* ── Article body ── */}
       <main className="mx-auto max-w-3xl px-4 pb-24 sm:px-6">
-        <nav aria-label="breadcrumb" className="mt-6 text-sm text-[#94A3B8]">
-          <Link href="/" className="hover:text-[#10B981]">Israel IPTV</Link>
+        <nav aria-label="breadcrumb" className="mt-6 text-sm text-muted-foreground">
+          <Link href="/" className="hover:text-primary">Israel IPTV</Link>
           <span aria-hidden> › </span>
-          <Link href="/blog" className="hover:text-[#10B981]">בלוג</Link>
+          <Link href="/blog" className="hover:text-primary">בלוג</Link>
         </nav>
-        <div className="mb-8 mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-b border-[#1E293B] pb-6 text-sm text-[#94A3B8]">
+        <div className="mb-8 mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-b border-border pb-6 text-sm text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <CalendarDays className="h-4 w-4 text-[#10B981]" />
+            <CalendarDays className="h-4 w-4 text-primary" />
             {format(new Date(post.date), 'd בMMMM yyyy', { locale: he })}
           </span>
           <span className="flex items-center gap-1.5">
-            <Clock className="h-4 w-4 text-[#10B981]" />
+            <Clock className="h-4 w-4 text-primary" />
             {minutes} דק׳ קריאה
           </span>
         </div>
@@ -148,37 +148,37 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="wp-content" dangerouslySetInnerHTML={{ __html: content }} />
 
         {/* ── Brand box ── */}
-        <aside className="mt-16 rounded-2xl border border-[#1E293B] bg-[#151B23] p-6 text-sm leading-relaxed text-[#94A3B8]">
+        <aside className="mt-16 rounded-2xl border border-border bg-muted p-6 text-sm leading-relaxed text-muted-foreground">
           <p>
             המאמר נכתב על ידי צוות{' '}
-            <Link href="/" className="font-semibold text-[#10B981] hover:underline">
+            <Link href="/" className="font-semibold text-primary hover:underline">
               Israel IPTV
             </Link>{' '}
             – שירות IPTV לצופים בישראל עם {site.channels}+ ערוצים, תמיכה בעברית 24/7 והחזר כספי תוך{' '}
             {site.refundDays} ימים.{' '}
-            <Link href="/about" className="text-[#10B981] hover:underline">
+            <Link href="/about" className="text-primary hover:underline">
               עוד על Israel IPTV
             </Link>
           </p>
         </aside>
 
         {/* ── CTA ── */}
-        <div className="mt-8 overflow-hidden rounded-2xl border border-[#10B981]/20 bg-gradient-to-br from-[#0d1f1a] to-[#0B0F13]">
+        <div className="mt-8 overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-secondary to-background">
           <div className="p-8 text-center sm:p-10">
-            <span className="mb-3 inline-block rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
+            <span className="mb-3 inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
               רוצים לנסות?
             </span>
             <h3 className="mb-3 text-2xl font-black">
-              מנוי ליום אחד ב-<span className="text-[#10B981]">₪13 בלבד</span>
+              מנוי ליום אחד ב-<span className="text-primary">₪13 בלבד</span>
             </h3>
-            <p className="mx-auto mb-8 max-w-sm text-[#94A3B8]">
+            <p className="mx-auto mb-8 max-w-sm text-muted-foreground">
               בדקו את איכות השידור במכשיר שלכם לפני שאתם מתחייבים למנוי ארוך.
             </p>
             <Link
               href={waTrial()}
               target="_blank"
               rel="noopener noreferrer"
-              className="neon-glow inline-block rounded-xl bg-[#10B981] px-10 py-3.5 font-bold text-[#0B0F13] transition-all hover:brightness-110"
+              className="neon-glow inline-block rounded-xl bg-primary px-10 py-3.5 font-bold text-primary-foreground transition-all hover:brightness-110"
             >
               הזמינו בוואטסאפ
             </Link>
@@ -194,7 +194,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <Link
                   key={p.slug}
                   href={`/${p.slug}`}
-                  className="glass rounded-xl p-4 text-sm font-semibold leading-snug transition-colors hover:text-[#10B981]"
+                  className="glass rounded-xl p-4 text-sm font-semibold leading-snug transition-colors hover:text-primary"
                 >
                   {p.title}
                 </Link>
@@ -203,10 +203,10 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        <div className="mt-10 border-t border-[#1E293B] pt-8">
+        <div className="mt-10 border-t border-border pt-8">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#94A3B8] transition-colors hover:text-[#10B981]"
+            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
             <ArrowRight className="h-4 w-4" />
             חזרה לבלוג

@@ -66,7 +66,7 @@ export default function Navbar({ locale = "he" }: { locale?: Locale }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href={locale === "en" ? "/en" : "/"} className="flex items-center gap-2 text-xl font-bold tracking-tight" dir="ltr">
-            <span className="text-white">Israel</span>
+            <span className="text-foreground">Israel</span>
             <span className="text-primary">IPTV</span>
           </Link>
 

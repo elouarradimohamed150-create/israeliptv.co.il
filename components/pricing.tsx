@@ -115,7 +115,7 @@ export default function Pricing({ locale = "he" }: { locale?: Locale }) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 className={`glass relative flex flex-col rounded-2xl p-6 ${
-                  plan.popular ? "ring-2 ring-primary" : ""
+                  plan.popular ? "outline-2 outline-primary" : ""
                 }`}
               >
                 {plan.popular && (

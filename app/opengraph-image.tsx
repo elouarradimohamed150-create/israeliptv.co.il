@@ -15,29 +15,31 @@ export default function OpengraphImage() {
           flexDirection: 'column',
           justifyContent: 'center',
           padding: '80px',
-          background: 'linear-gradient(135deg, #0B0F13 0%, #0d1f1a 100%)',
-          color: '#F8FAFC',
+          background: '#FFFFFF',
+          color: '#0B1B3F',
           fontFamily: 'sans-serif',
         }}
       >
+        <div style={{ position: 'absolute', top: 40, left: 0, right: 0, height: 36, background: '#0038B8' }} />
+        <div style={{ position: 'absolute', bottom: 40, left: 0, right: 0, height: 36, background: '#0038B8' }} />
         <div style={{ display: 'flex', fontSize: 120, fontWeight: 800, letterSpacing: -3 }}>
           <span>Israel&nbsp;</span>
-          <span style={{ color: '#10B981' }}>IPTV</span>
+          <span style={{ color: '#0038B8' }}>IPTV</span>
         </div>
-        <div style={{ fontSize: 44, marginTop: 24, color: '#94A3B8' }}>
+        <div style={{ fontSize: 44, marginTop: 24, color: '#475673' }}>
           34,000+ live channels · 130,000+ movies & series · 4K
         </div>
         <div style={{ display: 'flex', gap: 24, marginTop: 56, fontSize: 32 }}>
           {['Kan 11 · Keshet 12 · Reshet 13', 'From 55 ILS / month'].map((t) => (
             <div
               key={t}
-              style={{ padding: '14px 28px', borderRadius: 16, border: '2px solid #10B981', color: '#10B981' }}
+              style={{ padding: '14px 28px', borderRadius: 16, border: '2px solid #0038B8', color: '#0038B8' }}
             >
               {t}
             </div>
           ))}
         </div>
-        <div style={{ position: 'absolute', bottom: 60, right: 80, fontSize: 30, color: '#64748B' }}>
+        <div style={{ position: 'absolute', bottom: 96, right: 80, fontSize: 30, color: '#475673' }}>
           israeliptv.co.il
         </div>
       </div>

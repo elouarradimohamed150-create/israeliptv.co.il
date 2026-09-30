@@ -68,25 +68,26 @@ const copy = {
 export default function Footer({ locale = "he" }: { locale?: Locale }) {
   const t = copy[locale]
   return (
-    <footer className="border-t border-border/30 px-4 py-12">
+    <footer className="bg-primary px-4 pb-10 text-primary-foreground">
+      <div className="flag-stripe -mx-4 mb-12 !bg-[var(--flag-blue-dark)]" aria-hidden />
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <span className="text-xl font-bold tracking-tight" dir="ltr">
-              <span className="text-white">Israel</span> <span className="text-primary">IPTV</span>
+              <span className="text-white">Israel</span> <span className="text-[#B9CBF5]">IPTV</span>
             </span>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.about}</p>
+            <p className="mt-3 text-sm leading-relaxed text-white/75">{t.about}</p>
           </div>
 
           {t.columns.map((col) => (
             <div key={col.title}>
-              <h4 className="mb-4 text-sm font-semibold text-foreground">{col.title}</h4>
+              <h4 className="mb-4 text-sm font-semibold text-white">{col.title}</h4>
               <ul className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="text-sm text-white/75 transition-colors hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -97,21 +98,21 @@ export default function Footer({ locale = "he" }: { locale?: Locale }) {
           ))}
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-foreground">{t.contact}</h4>
-            <ul className="flex flex-col gap-2.5 text-sm text-muted-foreground">
+            <h4 className="mb-4 text-sm font-semibold text-white">{t.contact}</h4>
+            <ul className="flex flex-col gap-2.5 text-sm text-white/75">
               <li>
                 <Link
                   href={waContact}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors hover:text-primary"
+                  className="transition-colors hover:text-white hover:underline"
                 >
                   {t.whatsapp}: <span dir="ltr">{site.whatsappDisplay}</span>
                 </Link>
               </li>
               <li>{t.support}</li>
               <li>
-                <Link href={waBuy()} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                <Link href={waBuy()} target="_blank" rel="noopener noreferrer" className="font-semibold text-white underline-offset-4 hover:underline">
                   {t.order}
                 </Link>
               </li>
@@ -119,8 +120,8 @@ export default function Footer({ locale = "he" }: { locale?: Locale }) {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border/30 pt-6">
-          <p className="text-center text-xs leading-relaxed text-muted-foreground">
+        <div className="mt-10 border-t border-white/20 pt-6">
+          <p className="text-center text-xs leading-relaxed text-white/75">
             © {new Date().getFullYear()} {site.name}. {t.rights}
           </p>
         </div>

@@ -27,7 +27,7 @@ function ChannelLogo({ channel }: { channel: Channel }) {
   const src = logoUrl(channel.logo)
   const [failed, setFailed] = useState(false)
   if (!src || failed) {
-    return <span className="text-3xl font-black text-[#10B981]/70">{initials(channel.name)}</span>
+    return <span className="text-3xl font-black text-primary/70">{initials(channel.name)}</span>
   }
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -73,22 +73,22 @@ export default function ClientChannelSearch({ initial }: { initial: Page }) {
   return (
     <>
       <div className="relative mx-auto mb-6 max-w-3xl">
-        <div className="absolute -inset-1 rounded-[2rem] bg-[#10B981] opacity-10 blur"></div>
-        <div className="relative flex items-center overflow-hidden rounded-[2rem] border border-[#30363D] bg-[#151B23] shadow-xl">
-          <Search className="ms-6 h-6 w-6 text-[#94A3B8]" />
+        <div className="absolute -inset-1 rounded-[2rem] bg-primary opacity-10 blur"></div>
+        <div className="relative flex items-center overflow-hidden rounded-[2rem] border border-border bg-muted shadow-xl">
+          <Search className="ms-6 h-6 w-6 text-muted-foreground" />
           <input
             type="search"
             aria-label="חיפוש ערוץ"
             placeholder="חיפוש ערוץ או קטגוריה (לדוגמה: Israel, Sport, Kids)"
-            className="w-full bg-transparent py-6 pe-8 ps-4 text-xl font-semibold text-[#F8FAFC] outline-none placeholder:text-[#4B5563]"
+            className="w-full bg-transparent py-6 pe-8 ps-4 text-xl font-semibold text-foreground outline-none placeholder:text-muted-foreground"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          {loading && <Loader2 className="me-6 h-5 w-5 animate-spin text-[#10B981]" />}
+          {loading && <Loader2 className="me-6 h-5 w-5 animate-spin text-primary" />}
         </div>
       </div>
 
-      <p className="mb-10 text-center text-sm text-[#94A3B8]" aria-live="polite">
+      <p className="mb-10 text-center text-sm text-muted-foreground" aria-live="polite">
         {total.toLocaleString('en-US')} ערוצים {query && `עבור "${query}"`}
       </p>
 
@@ -96,15 +96,15 @@ export default function ClientChannelSearch({ initial }: { initial: Page }) {
         {channels.map((channel) => (
           <div
             key={channel.id}
-            className="group rounded-3xl border border-[#30363D] bg-[#151B23] p-4 transition-all duration-300 hover:border-[#10B981] hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]"
+            className="group rounded-3xl border border-border bg-muted p-4 transition-all duration-300 hover:border-primary hover:shadow-[0_8px_24px_rgba(0,56,184,0.12)]"
           >
-            <div className="relative mb-4 flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-[#30363D] bg-[#0B0F13]">
+            <div className="relative mb-4 flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-border bg-background">
               <ChannelLogo channel={channel} />
             </div>
-            <h2 className="mb-2 line-clamp-2 min-h-[34px] text-[12px] font-bold leading-tight text-[#F8FAFC]" dir="auto">
+            <h2 className="mb-2 line-clamp-2 min-h-[34px] text-[12px] font-bold leading-tight text-foreground" dir="auto">
               {channel.name}
             </h2>
-            <div className="flex items-center gap-1 truncate rounded-xl bg-[#10B981]/10 px-2.5 py-1.5 text-[10px] font-extrabold text-[#10B981]" dir="auto">
+            <div className="flex items-center gap-1 truncate rounded-xl bg-primary/10 px-2.5 py-1.5 text-[10px] font-extrabold text-primary" dir="auto">
               <Globe className="h-3 w-3 shrink-0" />
               <span className="truncate">{channel.category || 'בינלאומי'}</span>
             </div>
@@ -117,7 +117,7 @@ export default function ClientChannelSearch({ initial }: { initial: Page }) {
           <button
             onClick={() => load(query, channels.length)}
             disabled={loading}
-            className="rounded-full bg-[#10B981] px-12 py-5 font-black text-[#0B0F13] shadow-xl shadow-[#10B981]/10 transition-all hover:scale-105 disabled:opacity-60"
+            className="rounded-full bg-primary px-12 py-5 font-black text-primary-foreground shadow-xl shadow-primary/10 transition-all hover:scale-105 disabled:opacity-60"
           >
             {loading ? 'טוען...' : 'טענו ערוצים נוספים'}
           </button>
